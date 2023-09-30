@@ -20,11 +20,10 @@ import com.ch.flavourfair.presentation.ui.home.adapter.ProductAdapter
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private lateinit var binding: FragmentHomeBinding
 
     // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    // onDestroyView
 
     private val datasource: ProductDataSource by lazy {
         ProductDataSourceImpl()
@@ -55,7 +54,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -93,8 +92,5 @@ class HomeFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+
 }

@@ -5,11 +5,12 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.activity.viewModels
 import coil.load
-import com.ch.flavourfair.R
 import com.ch.flavourfair.databinding.ActivityDetailProductBinding
 import com.ch.flavourfair.model.Product
+import com.ch.flavourfair.utils.GenericViewModelFactory
+import com.ch.flavourfair.utils.toCurrencyFormat
 
 class DetailProductActivity : AppCompatActivity() {
 
@@ -17,15 +18,26 @@ class DetailProductActivity : AppCompatActivity() {
         ActivityDetailProductBinding.inflate(layoutInflater)
     }
 
-    private val product: Product? by lazy {
-        intent.getParcelableExtra<Product>(ARGS_PRODUCT)
+    private val viewModel: DetailProductViewModel by viewModels {
+        GenericViewModelFactory.create(DetailProductViewModel(intent?.extras))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        showProductData()
+        showProductData(viewModel.product)
         setOnClickLocation()
+        setOnClickQuantity()
+        observeData()
+    }
+
+    private fun setOnClickQuantity() {
+        binding.ivBtnadd.setOnClickListener {
+            viewModel.add()
+        }
+        binding.ivBtnremove.setOnClickListener {
+            viewModel.minus()
+        }
     }
 
     private fun setOnClickLocation() {
@@ -42,23 +54,31 @@ class DetailProductActivity : AppCompatActivity() {
         startActivity(direct)
     }
 
-    private fun showProductData() {
-        if (product != null) {
-            binding.ivImage.load(product?.imgUrl)
-            binding.tvName.text = product?.name
-            binding.tvPrice.text = product?.price
-            binding.tvDesc.text = product?.desc
-            binding.tvQuantity.text = product?.quantity.toString()
-        } else {
-            Toast.makeText(this, "Food Not Found", Toast.LENGTH_SHORT).show()
+    private fun showProductData(product: Product?) {
+        product?.apply {
+            binding.ivImage.load(this.imgUrl) {
+                crossfade(true)
+            }
+            binding.tvName.text = this.name
+            binding.tvDesc.text = this.desc
+            binding.tvPrice.text = this.price.toCurrencyFormat()
+        }
+    }
+
+    private fun observeData() {
+        viewModel.priceLiveData.observe(this) {
+            binding.tvPrice.text = it.toCurrencyFormat()
+        }
+        viewModel.productCountLiveData.observe(this) {
+            binding.tvQuantity.text = it.toString()
         }
     }
 
     companion object {
-        private const val ARGS_PRODUCT = "PRODUCT_KEY"
+        const val PRODUCT_KEY = "PRODUCT_KEY"
         fun startActivity(context: Context, product: Product?) {
             val intent = Intent(context, DetailProductActivity::class.java)
-            intent.putExtra(ARGS_PRODUCT, product)
+            intent.putExtra(PRODUCT_KEY, product)
             context.startActivity(intent)
 
         }

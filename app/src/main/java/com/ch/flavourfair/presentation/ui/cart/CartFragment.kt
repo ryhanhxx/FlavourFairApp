@@ -9,11 +9,11 @@ import com.ch.flavourfair.databinding.FragmentCartBinding
 
 class CartFragment : Fragment() {
 
-    private var _binding: FragmentCartBinding? = null
+    private lateinit var binding: FragmentCartBinding
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,14 +23,8 @@ class CartFragment : Fragment() {
         /*val dashboardViewModel =
             ViewModelProvider(this).get(DashboardViewModel::class.java)
 */
-        _binding = FragmentCartBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        return root
+        binding = FragmentCartBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }
