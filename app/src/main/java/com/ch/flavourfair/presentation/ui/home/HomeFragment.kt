@@ -23,7 +23,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
     // This property is only valid between onCreateView and
-    // onDestroyView.
+    // onDestroyView
 
     private val datasource: ProductDataSource by lazy {
         ProductDataSourceImpl()
@@ -67,7 +67,6 @@ class HomeFragment : Fragment() {
 
     private fun setupCategoryRecyclerView() {
         binding.rvCategory.adapter = adapterCategory
-        binding.rvCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL, false )
         adapterCategory.setData(CategoryDataSourceImpl().getCategoryData())
     }
 
@@ -92,4 +91,6 @@ class HomeFragment : Fragment() {
             adapter.refreshList()
         }
     }
+
+
 }

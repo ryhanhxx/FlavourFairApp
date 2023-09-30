@@ -6,6 +6,7 @@ import com.ch.flavourfair.core.ViewHolderBinder
 import com.ch.flavourfair.databinding.ProductItemGridBinding
 import com.ch.flavourfair.databinding.ProductItemListBinding
 import com.ch.flavourfair.model.Product
+import com.ch.flavourfair.utils.toCurrencyFormat
 
 class ProductItemViewHolder {
 }
@@ -19,7 +20,7 @@ class ProductLinearViewHolder(
             crossfade(true)
         }
         binding.tvName.text = item.name
-        binding.tvPrice.text = item.price
+        binding.tvPrice.text = item.price.toCurrencyFormat()
         binding.root.setOnClickListener {
             onClickListener.invoke(item)
         }
@@ -35,7 +36,7 @@ class ProductGridViewHolder(
             crossfade(true)
         }
         binding.tvName.text = item.name
-        binding.tvPrice.text = item.price
+        binding.tvPrice.text = item.price.toCurrencyFormat()
         binding.root.setOnClickListener {
             onClickListener.invoke(item)
         }

@@ -9,7 +9,7 @@ data class Product(
     val id: String = UUID.randomUUID().toString(),
     val imgUrl: String,
     val name: String,
-    val price: String,
+    val price: Double,
     val desc: String,
     val quantity: Int,
 ): Parcelable

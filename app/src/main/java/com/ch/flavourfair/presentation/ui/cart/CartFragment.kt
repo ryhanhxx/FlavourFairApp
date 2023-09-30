@@ -27,5 +27,4 @@ class CartFragment : Fragment() {
         return binding.root
     }
 
-
 }
