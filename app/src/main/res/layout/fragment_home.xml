@@ -59,22 +59,13 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
-                        android:id="@+id/iv_cart"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/img_cart"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/iv_profile"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
                         android:id="@+id/iv_profile"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginHorizontal="20dp"
-                        android:src="@drawable/img_profile"
+                        android:layout_marginHorizontal="10dp"
+                        android:src="@drawable/img_setting"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/iv_cart"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

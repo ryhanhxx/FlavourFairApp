@@ -7,6 +7,7 @@ import coil.load
 import com.ch.flavourfair.databinding.ItemCategoryListBinding
 import com.ch.flavourfair.model.Category
 
+
 class CategoryAdapter(private val onItemClick: (Category) -> Unit) :
     RecyclerView.Adapter<CategoryItemListViewHolder>() {
 
@@ -16,8 +17,7 @@ class CategoryAdapter(private val onItemClick: (Category) -> Unit) :
         return CategoryItemListViewHolder(
             binding = ItemCategoryListBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
-            ),
-            onItemClick = onItemClick
+            ), onItemClick
         )
     }
 

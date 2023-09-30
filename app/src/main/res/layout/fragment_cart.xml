@@ -13,8 +13,9 @@
         android:fontFamily="@font/poppins_semibold"
         android:gravity="center"
         android:padding="10dp"
-        android:text="Cart"
-        android:textSize="24sp"
+        android:text="@string/text_title_cart"
+        android:textColor="@color/primaryColor"
+        android:textSize="22sp"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
@@ -28,20 +29,15 @@
         android:id="@+id/rv_cart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/v_line" />
-
-    <View
-        android:id="@+id/v_line2"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/primaryColor"
-        app:layout_constraintBottom_toTopOf="@id/cl_order" />
+        android:nestedScrollingEnabled="true"
+        app:layout_constraintTop_toBottomOf="@id/v_line"
+        tools:listitem="@layout/product_item_cart" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_order"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
+        android:background="@color/primaryColor"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -58,7 +54,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Order Now"
+                android:text="@string/text_btn_order"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -77,7 +74,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Total Price"
+                android:text="@string/text_title_totalprice"
+                android:textColor="@color/white"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -86,6 +84,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
                 android:text="Rp. 10.000"
+                android:textColor="@color/white"
                 app:layout_constraintTop_toBottomOf="@id/tv_totalprice" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
