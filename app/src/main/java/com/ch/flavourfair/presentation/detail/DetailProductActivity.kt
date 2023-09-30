@@ -32,6 +32,9 @@ class DetailProductActivity : AppCompatActivity() {
     }
 
     private fun setOnClickQuantity() {
+        binding.ivBtnBack.setOnClickListener {
+            onBackPressed()
+        }
         binding.ivBtnadd.setOnClickListener {
             viewModel.add()
         }
