@@ -10,11 +10,11 @@ class CategoryDataSourceImpl() : CategoryDataSource {
     override fun getCategoryData(): List<Category> {
         return mutableListOf(
             Category(
-                imgUrl = "https://raw.githubusercontent.com/ryhanhxx/FlavourFairApp/master/app/src/main/res/drawable/img_burger_icon.png",
+                imgUrl = "https://raw.githubusercontent.com/ryhanhxx/FlavourFairApp/master/app/src/main/res/drawable/img_burger_icon.webp",
                 name = "Burger"
             ),
             Category(
-                imgUrl="https://raw.githubusercontent.com/ryhanhxx/FlavourFairApp/master/app/src/main/res/drawable/img_mie_icon.png",
+                imgUrl="https://raw.githubusercontent.com/ryhanhxx/FlavourFairApp/master/app/src/main/res/drawable/img_mie_icon.webp",
                 name = "Mie"
             ),
             Category(
@@ -22,7 +22,7 @@ class CategoryDataSourceImpl() : CategoryDataSource {
                 name = "Snack"
             ),
             Category(
-                imgUrl="https://raw.githubusercontent.com/ryhanhxx/FlavourFairApp/master/app/src/main/res/drawable/img_drink_icon.png",
+                imgUrl="https://raw.githubusercontent.com/ryhanhxx/FlavourFairApp/master/app/src/main/res/drawable/img_drink_icon.webp",
                 name = "Drink"
             )
         )

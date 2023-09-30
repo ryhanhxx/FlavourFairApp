@@ -47,11 +47,11 @@ class DetailProductActivity : AppCompatActivity() {
     }
 
     private fun navigateToMaps() {
-        val direct = Intent(
+        val intent = Intent(
             Intent.ACTION_VIEW,
             Uri.parse("https://maps.app.goo.gl/h4wQKqaBuXzftGK77")
         )
-        startActivity(direct)
+        startActivity(intent)
     }
 
     private fun showProductData(product: Product?) {
@@ -80,7 +80,6 @@ class DetailProductActivity : AppCompatActivity() {
             val intent = Intent(context, DetailProductActivity::class.java)
             intent.putExtra(PRODUCT_KEY, product)
             context.startActivity(intent)
-
         }
     }
 }
