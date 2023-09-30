@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.notifications.NotificationsFragment">
+    tools:context=".presentation.ui.profile.ProfileFragment">
 
     <TextView
         android:id="@+id/tv_title"
@@ -57,6 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Masukkan username anda..."
+            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
             app:layout_constraintTop_toBottomOf="@id/tv_username" />
 
         <TextView
@@ -74,7 +75,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Masukkan password anda..."
-            app:layout_constraintTop_toBottomOf="@+id/tv_password" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_password"
+            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"/>
 
         <TextView
             android:id="@+id/tv_email"
@@ -91,7 +93,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Masukkan email anda..."
-            app:layout_constraintTop_toBottomOf="@+id/tv_email" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_email"
+            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"/>
 
         <TextView
             android:id="@+id/tv_telephonenumber"
@@ -108,7 +111,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Masukkan email anda..."
-            app:layout_constraintTop_toBottomOf="@+id/tv_telephonenumber" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_telephonenumber"
+            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

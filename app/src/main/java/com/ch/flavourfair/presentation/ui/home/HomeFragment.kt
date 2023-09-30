@@ -6,12 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.ch.flavourfair.data.CategoryDataSource
+import com.ch.flavourfair.data.CategoryDataSourceImpl
 import com.ch.flavourfair.data.ProductDataSource
 import com.ch.flavourfair.data.ProductDataSourceImpl
 import com.ch.flavourfair.databinding.FragmentHomeBinding
 import com.ch.flavourfair.model.Product
 import com.ch.flavourfair.presentation.detail.DetailProductActivity
 import com.ch.flavourfair.presentation.ui.home.adapter.AdapterLayout
+import com.ch.flavourfair.presentation.ui.home.adapter.CategoryAdapter
 import com.ch.flavourfair.presentation.ui.home.adapter.ProductAdapter
 
 class HomeFragment : Fragment() {
@@ -26,9 +30,19 @@ class HomeFragment : Fragment() {
         ProductDataSourceImpl()
     }
 
+    private val datasourceCategory: CategoryDataSource by lazy {
+        CategoryDataSourceImpl()
+    }
+
     private val adapter: ProductAdapter by lazy {
         ProductAdapter(AdapterLayout.LINEAR) { product: Product ->
             navigateToDetailFragment(product)
+        }
+    }
+
+    private val adapterCategory: CategoryAdapter by lazy{
+        CategoryAdapter {
+
         }
     }
 
@@ -47,8 +61,14 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupCategoryRecyclerView()
         setupRecyclerview()
         setupSwitch()
+    }
+
+    private fun setupCategoryRecyclerView() {
+        binding.rvCategory.adapter = adapterCategory
+        adapterCategory.setData(CategoryDataSourceImpl().getCategoryData())
     }
 
     private fun setupRecyclerview() {
