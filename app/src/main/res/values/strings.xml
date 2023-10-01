@@ -30,4 +30,7 @@
     <string name="text_title_totalprice">Total Price</string>
     <string name="text_btn_order">Order Now</string>
     <string name="text_title_profile">Profile</string>
+    <string name="text_title_checkout">Checkout</string>
+    <string name="text_title_method">Shipping Method</string>
+    <string name="text_title_payment">Payment Method</string>
 </resources>
