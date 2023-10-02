@@ -185,6 +185,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:padding="10dp"
                 android:text="@string/btn_addcart"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toStartOf="@id/btn_buynow"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -197,6 +198,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:padding="10dp"
                 android:text="@string/btn_order"
+                android:backgroundTint="@color/primaryColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/btn_addtocart"
                 app:layout_constraintTop_toTopOf="parent" />
