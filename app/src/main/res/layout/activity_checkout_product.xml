@@ -104,7 +104,7 @@
         android:id="@+id/cl_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primaryColor"
+        android:background="@color/white"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -120,7 +120,6 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/text_title_payment"
-                android:textColor="@color/white"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <RadioGroup
@@ -186,7 +185,6 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Payment Summary"
-                android:textColor="@color/white"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -206,7 +204,6 @@
                     android:text="Total Payment"
                     app:layout_constraintEnd_toStartOf="@id/tv_detail2"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:textColor="@color/white"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -217,10 +214,10 @@
                     android:gravity="end"
                     android:padding="10dp"
                     android:text="Rp 56.000"
-                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/tv_detail"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textColor="@color/priceColor"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -231,6 +228,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
             android:text="@string/btn_order"
+            android:backgroundTint="#000000"
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
