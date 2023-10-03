@@ -1,4 +1,4 @@
-package com.ch.flavourfair.presentation.ui.home
+package com.ch.flavourfair.presentation.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,26 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.ch.flavourfair.data.CategoryDataSource
-import com.ch.flavourfair.data.CategoryDataSourceImpl
-import com.ch.flavourfair.data.ProductDataSource
-import com.ch.flavourfair.data.ProductDataSourceImpl
+import com.ch.flavourfair.data.dummy.CategoryDataSource
+import com.ch.flavourfair.data.dummy.CategoryDataSourceImpl
+import com.ch.flavourfair.data.dummy.ProductDataSource
+import com.ch.flavourfair.data.dummy.ProductDataSourceImpl
 import com.ch.flavourfair.databinding.FragmentHomeBinding
 import com.ch.flavourfair.model.Product
 import com.ch.flavourfair.presentation.detail.DetailProductActivity
-import com.ch.flavourfair.presentation.ui.home.adapter.AdapterLayout
-import com.ch.flavourfair.presentation.ui.home.adapter.CategoryAdapter
-import com.ch.flavourfair.presentation.ui.home.adapter.ProductAdapter
+import com.ch.flavourfair.presentation.home.adapter.AdapterLayout
+import com.ch.flavourfair.presentation.home.adapter.CategoryAdapter
+import com.ch.flavourfair.presentation.home.adapter.ProductAdapter
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
-    // This property is only valid between onCreateView and
-    // onDestroyView
-
-    private val datasource: ProductDataSource by lazy {
+    private val datasourceProduct: ProductDataSource by lazy {
         ProductDataSourceImpl()
     }
 
@@ -76,14 +72,12 @@ class HomeFragment : Fragment() {
             layoutManager = GridLayoutManager(requireContext(), span)
             adapter = this@HomeFragment.adapter
         }
-        adapter.setData(datasource.getProductData())
+        adapter.setData(datasourceProduct.getProductData())
     }
 
     private fun setupSwitch() {
-        val btnSwitch = binding.ivBtnchangeview
         val layoutManager = binding.rvFoods.layoutManager as GridLayoutManager
-
-        btnSwitch.setOnClickListener {
+        binding.ivBtnchangeview.setOnClickListener {
             val newSpanCount = if (layoutManager.spanCount == 1) 2 else 1
             layoutManager.spanCount = newSpanCount
             adapter.adapterLayout =
@@ -91,6 +85,8 @@ class HomeFragment : Fragment() {
             adapter.refreshList()
         }
     }
+
+
 
 
 }

@@ -6,10 +6,10 @@ import java.util.UUID
 
 @Parcelize
 data class Product(
-    val id: String = UUID.randomUUID().toString(),
+    val id: Int? = null,
     val imgUrl: String,
+    val rating: Double,
     val name: String,
     val price: Double,
     val desc: String,
-    val quantity: Int,
 ): Parcelable

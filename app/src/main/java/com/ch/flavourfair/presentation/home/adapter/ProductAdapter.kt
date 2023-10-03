@@ -1,4 +1,4 @@
-package com.ch.flavourfair.presentation.ui.home.adapter
+package com.ch.flavourfair.presentation.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,8 +9,8 @@ import com.ch.flavourfair.core.ViewHolderBinder
 import com.ch.flavourfair.databinding.ProductItemGridBinding
 import com.ch.flavourfair.databinding.ProductItemListBinding
 import com.ch.flavourfair.model.Product
-import com.ch.flavourfair.presentation.ui.home.adapter.viewholder.ProductGridViewHolder
-import com.ch.flavourfair.presentation.ui.home.adapter.viewholder.ProductLinearViewHolder
+import com.ch.flavourfair.presentation.home.adapter.viewholder.ProductGridViewHolder
+import com.ch.flavourfair.presentation.home.adapter.viewholder.ProductLinearViewHolder
 
 class ProductAdapter(
     var adapterLayout: AdapterLayout,

@@ -1,4 +1,4 @@
-package com.ch.flavourfair.presentation.ui.home.adapter.viewholder
+package com.ch.flavourfair.presentation.home.adapter.viewholder
 
 import androidx.recyclerview.widget.RecyclerView
 import coil.load

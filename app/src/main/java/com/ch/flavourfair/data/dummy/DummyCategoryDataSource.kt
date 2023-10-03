@@ -1,4 +1,4 @@
-package com.ch.flavourfair.data
+package com.ch.flavourfair.data.dummy
 
 import com.ch.flavourfair.model.Category
 

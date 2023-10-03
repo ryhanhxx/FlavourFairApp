@@ -1,15 +1,15 @@
-package com.ch.flavourfair.presentation.ui.cart
+package com.ch.flavourfair.presentation.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.ch.flavourfair.databinding.FragmentCartBinding
+import com.ch.flavourfair.databinding.FragmentProfileBinding
 
-class CartFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
-    private lateinit var binding: FragmentCartBinding
+    private lateinit var binding: FragmentProfileBinding
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -20,11 +20,12 @@ class CartFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        /*val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
-*/
-        binding = FragmentCartBinding.inflate(inflater, container, false)
+        /*val notificationsViewModel =
+            ViewModelProvider(this).get(NotificationsViewModel::class.java)*/
+
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
+
 
 }
