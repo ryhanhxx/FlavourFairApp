@@ -10,8 +10,6 @@ import com.ch.flavourfair.data.local.database.entity.ProductEntity
 import kotlinx.coroutines.flow.Flow
 
 interface ProductDataSource {
-
-
     fun getAllProducts(): Flow<List<ProductEntity>>
     fun getProductById(id: Int): Flow<ProductEntity>
     suspend fun insertProducts(products: List<ProductEntity>)
