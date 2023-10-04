@@ -10,25 +10,6 @@ import com.ch.flavourfair.utils.ResultWrapper
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val repo: ProductRepository) : ViewModel() {
-
-    private val _homeData = MutableLiveData<List<Product>>()
-    val homeData: LiveData<List<Product>>
-        get() = _homeData
-
-    fun fetchHomeData() {
-        viewModelScope.launch {
-            repo.getProducts().map {
-                mapToHomeData(it)
-            }.collect {
-                _homeData.postValue(it)
-            }
-        }
-    }
-
-    private fun mapToHomeData(productResult: ResultWrapper<List<Product>>): List<Product> {
-        // Di sini, Anda dapat melakukan transformasi atau pemrosesan tambahan jika diperlukan
-        return productResult.payload ?: emptyList()
-    }
+class HomeViewModel() : ViewModel() {
 }
 
