@@ -1,4 +1,4 @@
-package com.ch.flavourfair.presentation.home.adapter
+package com.ch.flavourfair.presentation.home.adapter.subadapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ch.flavourfair.core.ViewHolderBinder
-import com.ch.flavourfair.databinding.ProductItemGridBinding
-import com.ch.flavourfair.databinding.ProductItemListBinding
+import com.ch.flavourfair.databinding.ItemProductGridBinding
+import com.ch.flavourfair.databinding.ItemProductListBinding
 import com.ch.flavourfair.model.Product
 import com.ch.flavourfair.presentation.home.adapter.viewholder.ProductGridViewHolder
 import com.ch.flavourfair.presentation.home.adapter.viewholder.ProductLinearViewHolder
@@ -30,14 +30,14 @@ class ProductAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             AdapterLayout.GRID.ordinal -> (ProductGridViewHolder(
-                binding = ProductItemGridBinding.inflate(
+                binding = ItemProductGridBinding.inflate(
                     LayoutInflater.from(parent.context), parent, false
                 ), onItemClick
             ))
 
             else -> {
                 ProductLinearViewHolder(
-                    binding = ProductItemListBinding.inflate(
+                    binding = ItemProductListBinding.inflate(
                         LayoutInflater.from(parent.context), parent, false
                     ), onItemClick
                 )

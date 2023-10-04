@@ -9,29 +9,37 @@ interface CartDataSource {
     fun getAllCarts(): Flow<List<CartProductRelation>>
     fun getCartById(cartId: Int): Flow<CartProductRelation>
     suspend fun insertCart(cart: CartEntity)
+    suspend fun insertCarts(carts: List<CartEntity>)
     suspend fun deleteProduct(cart: CartEntity): Int
     suspend fun updateProduct(cart: CartEntity): Int
 }
 
-class CartDatabaseDataSource(private val cartDao: CartDao) : CartDataSource {
+class CartDatabaseDataSource(
+    private val dao: CartDao
+) : CartDataSource {
     override fun getAllCarts(): Flow<List<CartProductRelation>> {
-        return cartDao.getAllCarts()
+        return dao.getAllCarts()
     }
 
     override fun getCartById(cartId: Int): Flow<CartProductRelation> {
-        return cartDao.getCartById(cartId)
+        return dao.getCartById(cartId)
     }
 
     override suspend fun insertCart(cart: CartEntity) {
-        return cartDao.insertCart(cart)
+        return dao.insertCart(cart)
+    }
+
+    override suspend fun insertCarts(carts: List<CartEntity>) {
+        return dao.insertCarts(carts)
     }
 
     override suspend fun deleteProduct(cart: CartEntity): Int {
-        return cartDao.deleteProduct(cart)
+        return dao.deleteProduct(cart)
     }
 
     override suspend fun updateProduct(cart: CartEntity): Int {
-        return cartDao.updateProduct(cart)
+        return dao.updateProduct(cart)
     }
+
 
 }

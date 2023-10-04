@@ -98,7 +98,7 @@
         android:layout_height="wrap_content"
         android:nestedScrollingEnabled="true"
         app:layout_constraintTop_toBottomOf="@id/cl_switch1"
-        tools:listitem="@layout/product_item_cart" />
+        tools:listitem="@layout/item_cart_product" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_bottom"

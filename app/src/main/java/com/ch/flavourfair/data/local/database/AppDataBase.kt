@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.ch.flavourfair.data.dummy.ProductDataSourceImpl
+import com.ch.flavourfair.data.dummy.DummyProductDataSourceImpl
 import com.ch.flavourfair.data.local.database.AppDatabase.Companion.getInstance
 import com.ch.flavourfair.data.local.database.dao.CartDao
 import com.ch.flavourfair.data.local.database.dao.ProductDao
@@ -41,8 +41,8 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     DB_NAME
                 )
-                    .addCallback(DatabaseSeederCallback(context))
                     .fallbackToDestructiveMigration()
+                    .addCallback(DatabaseSeederCallback(context))
                     .build()
                 INSTANCE = instance
                 // return instance
@@ -59,13 +59,13 @@ class DatabaseSeederCallback(private val context: Context) : RoomDatabase.Callba
     override fun onCreate(db: SupportSQLiteDatabase) {
         super.onCreate(db)
         scope.launch {
-            getInstance(context).productDao().insertProduct(prepopulateProducts())
+            getInstance(context).productDao().insertProducts(prepopulateProducts())
             getInstance(context).cartDao().insertCarts(prepopulateCarts())
         }
     }
 
     private fun prepopulateProducts(): List<ProductEntity> {
-        return ProductDataSourceImpl().getProductData().toProductEntity()
+        return DummyProductDataSourceImpl().getProductData().toProductEntity()
     }
 
     private fun prepopulateCarts(): List<CartEntity> {

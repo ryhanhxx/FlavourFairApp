@@ -23,3 +23,5 @@ fun CartProductRelation.toCartProduct() = CartProduct(
     cart = this.cart.toCart(),
     product = this.product.toProduct()
 )
+
+fun List<CartProductRelation>.toCartProductList() = this.map { it.toCartProduct() }

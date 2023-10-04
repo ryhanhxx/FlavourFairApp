@@ -2,11 +2,11 @@ package com.ch.flavourfair.data.dummy
 
 import com.ch.flavourfair.model.Product
 
-interface ProductDataSource {
+interface DummyProductDataSource {
     fun getProductData(): List<Product>
 }
 
-class ProductDataSourceImpl() : ProductDataSource {
+class DummyProductDataSourceImpl() : DummyProductDataSource {
     override fun getProductData(): List<Product> {
         return mutableListOf(
             Product(

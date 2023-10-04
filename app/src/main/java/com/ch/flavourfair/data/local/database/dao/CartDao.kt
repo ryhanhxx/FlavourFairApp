@@ -20,10 +20,10 @@ interface CartDao {
     fun getCartById(cartId: Int): Flow<CartProductRelation>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCart(cart: CartEntity)
+    suspend fun insertCart(carts: CartEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCarts(product: List<CartEntity>)
+    suspend fun insertCarts(carts: List<CartEntity>)
 
     @Delete
     suspend fun deleteProduct(cart: CartEntity): Int

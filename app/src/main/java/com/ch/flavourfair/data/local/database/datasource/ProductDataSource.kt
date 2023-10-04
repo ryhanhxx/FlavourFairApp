@@ -11,19 +11,11 @@ import kotlinx.coroutines.flow.Flow
 
 interface ProductDataSource {
 
-    @Query("SELECT * FROM PRODUCTS")
+
     fun getAllProducts(): Flow<List<ProductEntity>>
-
-    @Query("SELECT * FROM PRODUCTS WHERE id == :id")
     fun getProductById(id: Int): Flow<ProductEntity>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertProducts(product: List<ProductEntity>)
-
-    @Delete
+    suspend fun insertProducts(products: List<ProductEntity>)
     suspend fun deleteProduct(product: ProductEntity): Int
-
-    @Update
     suspend fun updateProduct(product: ProductEntity): Int
 
 }
@@ -37,8 +29,8 @@ class ProductDatabaseDataSource(private val dao : ProductDao) : ProductDataSourc
         return dao.getProductById(id)
     }
 
-    override suspend fun insertProducts(product: List<ProductEntity>) {
-        return dao.insertProduct(product)
+    override suspend fun insertProducts(products: List<ProductEntity>) {
+        return dao.insertProducts(products)
     }
 
     override suspend fun deleteProduct(product: ProductEntity): Int {

@@ -3,8 +3,8 @@ package com.ch.flavourfair.presentation.home.adapter.viewholder
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.ch.flavourfair.core.ViewHolderBinder
-import com.ch.flavourfair.databinding.ProductItemGridBinding
-import com.ch.flavourfair.databinding.ProductItemListBinding
+import com.ch.flavourfair.databinding.ItemProductGridBinding
+import com.ch.flavourfair.databinding.ItemProductListBinding
 import com.ch.flavourfair.model.Product
 import com.ch.flavourfair.utils.toCurrencyFormat
 
@@ -12,7 +12,7 @@ class ProductItemViewHolder {
 }
 
 class ProductLinearViewHolder(
-    private val binding: ProductItemListBinding,
+    private val binding: ItemProductListBinding,
     private val onClickListener: (Product) -> Unit
 ) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<Product> {
     override fun bind(item: Product) {
@@ -28,7 +28,7 @@ class ProductLinearViewHolder(
 }
 
 class ProductGridViewHolder(
-    private val binding: ProductItemGridBinding,
+    private val binding: ItemProductGridBinding,
     private val onClickListener: (Product) -> Unit
 ) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<Product> {
     override fun bind(item: Product) {

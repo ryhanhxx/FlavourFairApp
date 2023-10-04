@@ -5,28 +5,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-import com.ch.flavourfair.data.dummy.CategoryDataSource
-import com.ch.flavourfair.data.dummy.CategoryDataSourceImpl
-import com.ch.flavourfair.data.dummy.ProductDataSource
-import com.ch.flavourfair.data.dummy.ProductDataSourceImpl
+import com.ch.flavourfair.data.dummy.DummyCategoryDataSource
+import com.ch.flavourfair.data.dummy.DummyCategoryDataSourceImpl
+import com.ch.flavourfair.data.dummy.DummyProductDataSource
+import com.ch.flavourfair.data.dummy.DummyProductDataSourceImpl
+import com.ch.flavourfair.data.local.database.AppDatabase
+import com.ch.flavourfair.data.local.database.datasource.ProductDatabaseDataSource
+import com.ch.flavourfair.data.repository.ProductRepository
+import com.ch.flavourfair.data.repository.ProductRepositoryImpl
 import com.ch.flavourfair.databinding.FragmentHomeBinding
 import com.ch.flavourfair.model.Product
 import com.ch.flavourfair.presentation.detail.DetailProductActivity
-import com.ch.flavourfair.presentation.home.adapter.AdapterLayout
-import com.ch.flavourfair.presentation.home.adapter.CategoryAdapter
-import com.ch.flavourfair.presentation.home.adapter.ProductAdapter
+import com.ch.flavourfair.presentation.home.adapter.subadapter.AdapterLayout
+import com.ch.flavourfair.presentation.home.adapter.subadapter.CategoryAdapter
+import com.ch.flavourfair.presentation.home.adapter.subadapter.ProductAdapter
+import com.ch.flavourfair.utils.GenericViewModelFactory
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
-    private val datasourceProduct: ProductDataSource by lazy {
-        ProductDataSourceImpl()
+    private val datasourceProduct: DummyProductDataSource by lazy {
+        DummyProductDataSourceImpl()
     }
 
-    private val datasourceCategory: CategoryDataSource by lazy {
-        CategoryDataSourceImpl()
+    private val datasourceCategory: DummyCategoryDataSource by lazy {
+        DummyCategoryDataSourceImpl()
     }
 
     private val adapter: ProductAdapter by lazy {
@@ -59,11 +66,13 @@ class HomeFragment : Fragment() {
         setupCategoryRecyclerView()
         setupRecyclerview()
         setupSwitch()
+
+
     }
 
     private fun setupCategoryRecyclerView() {
         binding.rvCategory.adapter = adapterCategory
-        adapterCategory.setData(CategoryDataSourceImpl().getCategoryData())
+        adapterCategory.setItems(DummyCategoryDataSourceImpl().getCategoryData())
     }
 
     private fun setupRecyclerview() {

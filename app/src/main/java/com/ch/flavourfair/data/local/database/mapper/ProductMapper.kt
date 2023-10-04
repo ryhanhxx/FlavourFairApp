@@ -23,4 +23,5 @@ fun Product?.toProductEntity() = ProductEntity(
         this.id = this@toProductEntity.id
     }
 }
+fun List<ProductEntity?>.toProductList() = this.map { it.toProduct() }
 fun List<Product?>.toProductEntity() = this.map { it.toProductEntity() }

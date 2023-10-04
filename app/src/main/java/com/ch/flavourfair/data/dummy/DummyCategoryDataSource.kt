@@ -2,11 +2,11 @@ package com.ch.flavourfair.data.dummy
 
 import com.ch.flavourfair.model.Category
 
-interface CategoryDataSource{
+interface DummyCategoryDataSource{
     fun getCategoryData(): List<Category>
 }
 
-class CategoryDataSourceImpl() : CategoryDataSource {
+class DummyCategoryDataSourceImpl() : DummyCategoryDataSource {
     override fun getCategoryData(): List<Category> {
         return mutableListOf(
             Category(
