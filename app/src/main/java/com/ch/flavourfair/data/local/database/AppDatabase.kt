@@ -27,7 +27,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun productDao(): ProductDao
 
     companion object {
-        private const val DB_NAME = "EGroceries.db"
+        private const val DB_NAME = "Flavourfair.db"
 
         @Volatile
         private var INSTANCE: AppDatabase? = null
@@ -59,7 +59,7 @@ class DatabaseSeederCallback(private val context: Context) : RoomDatabase.Callba
     override fun onCreate(db: SupportSQLiteDatabase) {
         super.onCreate(db)
         scope.launch {
-            getInstance(context).productDao().insertProducts(prepopulateProducts())
+            getInstance(context).productDao().insertProduct(prepopulateProducts())
             getInstance(context).cartDao().insertCarts(prepopulateCarts())
         }
     }

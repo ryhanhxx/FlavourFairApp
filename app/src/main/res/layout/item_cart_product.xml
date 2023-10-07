@@ -107,12 +107,15 @@
             app:layout_constraintStart_toEndOf="@id/iv_image"
             app:layout_constraintTop_toBottomOf="@id/cl_addquantity">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
                 android:hint="Write ur note"
+                android:imeOptions="actionDone"
+                tools:text="aikowfbawoifhaowifb awbn ouiqawhofin awf oiawf awoif"
+                android:inputType="text"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent" />
 

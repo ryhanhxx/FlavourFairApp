@@ -27,7 +27,10 @@ class ProductRepositoryImpl(
     }
 
     override fun getProducts(): Flow<ResultWrapper<List<Product>>> {
-        return productDataSource.getAllProducts().map { proceed { it.toProductList() } }.onStart {
+        return productDataSource.getAllProducts().map {
+            proceed { it.toProductList() //Product Entity to Product
+            }
+        }.onStart { //onStart is the first one of data running
             emit(ResultWrapper.Loading())
             delay(2000)
         }

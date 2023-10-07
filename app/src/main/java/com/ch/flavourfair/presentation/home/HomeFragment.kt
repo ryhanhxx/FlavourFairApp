@@ -44,7 +44,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private val adapterCategory: CategoryAdapter by lazy{
+    private val adapterCategory: CategoryAdapter by lazy {
         CategoryAdapter {
 
         }
@@ -52,6 +52,22 @@ class HomeFragment : Fragment() {
 
     private fun navigateToDetailFragment(product: Product) {
         DetailProductActivity.startActivity(requireContext(), product)
+    }
+
+    private val viewModel: HomeViewModel by viewModels {
+        val cds: DummyCategoryDataSource = DummyCategoryDataSourceImpl()
+        val database = AppDatabase.getInstance(requireContext())
+        val productDao = database.productDao()
+        val productDataSource = ProductDatabaseDataSource(productDao)
+        val repo: ProductRepository = ProductRepositoryImpl(productDataSource, cds)
+        GenericViewModelFactory.create(HomeViewModel(repo))
+    }
+
+    private val viewModelDataStore: HomeDataStore by viewModels {
+        val dataStore = this.requireContext().appDataStore
+        val dataStoreHelper = PreferenceDataStoreHelperImpl(dataStore)
+        val userPreferenceDataSource = UserPreferenceDataSourceImpl(dataStoreHelper)
+        GenericViewModelFactory.create(HomeDataStore(userPreferenceDataSource))
     }
 
     override fun onCreateView(
@@ -68,6 +84,8 @@ class HomeFragment : Fragment() {
         setupCategoryRecyclerView()
         setupRecyclerview()
         setupSwitch()
+        fetchData()
+
     }
 
     private fun setupCategoryRecyclerView() {
@@ -77,15 +95,18 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerview() {
         val span = if (adapter.adapterLayout == AdapterLayout.LINEAR) 1 else 2
-        binding.rvFoods.apply {
+        binding.rvHome.apply {
             layoutManager = GridLayoutManager(requireContext(), span)
             adapter = this@HomeFragment.adapter
         }
         adapter.setData(datasourceProduct.getProductData())
+        /*viewModel.homeData.observe(viewLifecycleOwner) {
+            adapter.setData(it)
+        }*/
     }
 
     private fun setupSwitch() {
-        val layoutManager = binding.rvFoods.layoutManager as GridLayoutManager
+        val layoutManager = binding.rvHome.layoutManager as GridLayoutManager
         binding.ivBtnchangeview.setOnClickListener {
             val newSpanCount = if (layoutManager.spanCount == 1) 2 else 1
             layoutManager.spanCount = newSpanCount
@@ -94,4 +115,32 @@ class HomeFragment : Fragment() {
             adapter.refreshList()
         }
     }
+
+    private fun fetchData() {
+        viewModel.homeData.observe(viewLifecycleOwner) {
+            adapter.setData(it)
+        }
+    }
+
+    /*private fun setupRecyclerview() {
+        viewModelDataStore.userGridModeLiveData.observe(viewLifecycleOwner) { isUsingGridMode ->
+            val span = if (isUsingGridMode) 2 else 1
+            binding.rvHome.apply {
+                layoutManager = GridLayoutManager(requireContext(), span)
+                adapter = this@HomeFragment.adapter
+            }
+            viewModel.homeData.observe(viewLifecycleOwner) {
+                adapter.setData(it)
+            }
+        }
+    }
+
+    private fun setupSwitch() {
+        val layoutManager = binding.rvHome.layoutManager as GridLayoutManager
+        binding.ivBtnchangeview.setOnClickListener {
+            val newGridMode = layoutManager.spanCount == 1
+            viewModelDataStore.setUserGridModePref(newGridMode)
+        }
+    }*/
+
 }

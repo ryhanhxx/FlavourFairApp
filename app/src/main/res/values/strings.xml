@@ -33,4 +33,5 @@
     <string name="text_title_checkout">Checkout</string>
     <string name="text_title_method">Shipping Method</string>
     <string name="text_title_payment">Payment Method</string>
+    <string name="text_total_quantity">x%s</string>
 </resources>

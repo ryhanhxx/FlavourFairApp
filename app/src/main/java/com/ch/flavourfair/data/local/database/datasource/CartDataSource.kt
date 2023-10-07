@@ -8,38 +8,30 @@ import kotlinx.coroutines.flow.Flow
 interface CartDataSource {
     fun getAllCarts(): Flow<List<CartProductRelation>>
     fun getCartById(cartId: Int): Flow<CartProductRelation>
-    suspend fun insertCart(cart: CartEntity)
-    suspend fun insertCarts(carts: List<CartEntity>)
-    suspend fun deleteProduct(cart: CartEntity): Int
-    suspend fun updateProduct(cart: CartEntity): Int
+    suspend fun insertCart(cart: CartEntity) : Long
+    suspend fun deleteCart(cart: CartEntity): Int
+    suspend fun updateCart(cart: CartEntity): Int
 }
 
-class CartDatabaseDataSource(
-    private val dao: CartDao
-) : CartDataSource {
+class CartDatabaseDataSource(private val cartDao: CartDao) : CartDataSource {
     override fun getAllCarts(): Flow<List<CartProductRelation>> {
-        return dao.getAllCarts()
+        return cartDao.getAllCarts()
     }
 
     override fun getCartById(cartId: Int): Flow<CartProductRelation> {
-        return dao.getCartById(cartId)
+        return cartDao.getCartById(cartId)
     }
 
-    override suspend fun insertCart(cart: CartEntity) {
-        return dao.insertCart(cart)
+    override suspend fun insertCart(cart: CartEntity): Long {
+        return cartDao.insertCart(cart)
     }
 
-    override suspend fun insertCarts(carts: List<CartEntity>) {
-        return dao.insertCarts(carts)
+    override suspend fun deleteCart(cart: CartEntity): Int {
+        return cartDao.deleteCart(cart)
     }
 
-    override suspend fun deleteProduct(cart: CartEntity): Int {
-        return dao.deleteProduct(cart)
+    override suspend fun updateCart(cart: CartEntity): Int {
+        return cartDao.updateCart(cart)
     }
-
-    override suspend fun updateProduct(cart: CartEntity): Int {
-        return dao.updateProduct(cart)
-    }
-
 
 }

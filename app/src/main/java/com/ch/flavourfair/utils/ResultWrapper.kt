@@ -63,6 +63,5 @@ suspend fun <T> proceedFlow(block: suspend () -> T): Flow<ResultWrapper<T>> {
         ResultWrapper.Error<T>(exception = Exception(e))
     }.onStart {
         emit(ResultWrapper.Loading())
-        delay(2000)
     }
 }

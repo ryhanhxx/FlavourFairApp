@@ -35,10 +35,10 @@ class DetailProductActivity : AppCompatActivity() {
         binding.ivBtnBack.setOnClickListener {
             onBackPressed()
         }
-        binding.ivBtnadd.setOnClickListener {
+        binding.ivAdd.setOnClickListener {
             viewModel.add()
         }
-        binding.ivBtnremove.setOnClickListener {
+        binding.ivMinus.setOnClickListener {
             viewModel.minus()
         }
     }

@@ -20,6 +20,6 @@
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.ch.flavourfair.presentation.profile.ProfileFragment"
-        android:label="@string/title_cart"
+        android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

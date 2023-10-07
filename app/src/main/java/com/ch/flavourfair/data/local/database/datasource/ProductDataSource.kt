@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 interface ProductDataSource {
     fun getAllProducts(): Flow<List<ProductEntity>>
     fun getProductById(id: Int): Flow<ProductEntity>
-    suspend fun insertProducts(products: List<ProductEntity>)
+    suspend fun insertProducts(product: List<ProductEntity>)
     suspend fun deleteProduct(product: ProductEntity): Int
     suspend fun updateProduct(product: ProductEntity): Int
 
@@ -27,8 +27,8 @@ class ProductDatabaseDataSource(private val dao : ProductDao) : ProductDataSourc
         return dao.getProductById(id)
     }
 
-    override suspend fun insertProducts(products: List<ProductEntity>) {
-        return dao.insertProducts(products)
+    override suspend fun insertProducts(product: List<ProductEntity>) {
+        return dao.insertProduct(product)
     }
 
     override suspend fun deleteProduct(product: ProductEntity): Int {
