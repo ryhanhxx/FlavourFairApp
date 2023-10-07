@@ -36,7 +36,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_cart"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        tools:itemCount="3"
         android:nestedScrollingEnabled="true"
         app:layout_constraintTop_toBottomOf="@id/v_line"
         tools:listitem="@layout/item_cart_product" />
@@ -93,7 +94,7 @@
                 android:fontFamily="@font/poppins"
                 android:textColor="@color/priceColor"
                 app:layout_constraintTop_toBottomOf="@id/tv_totalprice"
-                tools:text="Rp. 10.000" />
+                tools:text="@string/text_total_quantity" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

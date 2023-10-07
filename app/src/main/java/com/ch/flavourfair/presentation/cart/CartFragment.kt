@@ -2,6 +2,7 @@ package com.ch.flavourfair.presentation.cart
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,8 +16,8 @@ import com.ch.flavourfair.data.repository.CartRepository
 import com.ch.flavourfair.data.repository.CartRepositoryImpl
 import com.ch.flavourfair.databinding.FragmentCartBinding
 import com.ch.flavourfair.model.Cart
-import com.ch.flavourfair.presentation.adapter.CartListAdapter
-import com.ch.flavourfair.presentation.adapter.CartListener
+import com.ch.flavourfair.presentation.cart.adapter.CartListAdapter
+import com.ch.flavourfair.presentation.cart.viewholder.CartListener
 import com.ch.flavourfair.presentation.checkout.CheckoutProductActivity
 import com.ch.flavourfair.utils.GenericViewModelFactory
 import com.ch.flavourfair.utils.proceedWhen
@@ -55,8 +56,7 @@ class CartFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentCartBinding.inflate(inflater, container, false)
         return binding.root
@@ -82,33 +82,28 @@ class CartFragment : Fragment() {
 
     private fun observeData() {
         viewModel.cartList.observe(viewLifecycleOwner) { result ->
-            result.proceedWhen(
-                doOnSuccess = {
-                    binding.rvCart.isVisible = true
-                    binding.layoutState.root.isVisible = false
-                    binding.layoutState.pbLoading.isVisible = false
-                    binding.layoutState.tvError.isVisible = false
-                    result.payload?.let { (carts,totalPrice) ->
-                        adapter.submitData(carts)
-                        binding.tvPrice.text = totalPrice.toCurrencyFormat()
-                    }
-                },
-                doOnError = { err ->
-                    binding.layoutState.root.isVisible = true
-                    binding.layoutState.tvError.isVisible = true
-                    binding.layoutState.tvError.text = err.exception?.message.orEmpty()
-                    binding.layoutState.pbLoading.isVisible = false
-                },
-                doOnLoading = {
-                    binding.layoutState.root.isVisible = true
-                    binding.layoutState.tvError.isVisible = false
-                    binding.layoutState.pbLoading.isVisible = true
-                    binding.rvCart.isVisible = false
-                },
-                doOnEmpty = {
-                    //todo : add empty state
+            result.proceedWhen(doOnSuccess = {
+                binding.rvCart.isVisible = true
+                binding.layoutState.root.isVisible = false
+                binding.layoutState.pbLoading.isVisible = false
+                binding.layoutState.tvError.isVisible = false
+                result.payload?.let { (carts, totalPrice) ->
+                    adapter.submitData(carts)
+                    binding.tvPrice.text = totalPrice.toCurrencyFormat()
                 }
-            )
+            }, doOnError = { err ->
+                binding.layoutState.root.isVisible = true
+                binding.layoutState.tvError.isVisible = true
+                binding.layoutState.tvError.text = err.exception?.message.orEmpty()
+                binding.layoutState.pbLoading.isVisible = false
+            }, doOnLoading = {
+                binding.layoutState.root.isVisible = true
+                binding.layoutState.tvError.isVisible = false
+                binding.layoutState.pbLoading.isVisible = true
+                binding.rvCart.isVisible = false
+            }, doOnEmpty = {
+                Log.d("Cart Fragment", "Cart is empty")
+            })
         }
     }
 

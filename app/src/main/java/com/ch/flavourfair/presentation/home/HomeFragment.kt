@@ -1,12 +1,15 @@
 package com.ch.flavourfair.presentation.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.ch.flavourfair.R
 import com.ch.flavourfair.data.dummy.DummyCategoryDataSource
 import com.ch.flavourfair.data.dummy.DummyCategoryDataSourceImpl
 import com.ch.flavourfair.data.dummy.DummyProductDataSource
@@ -23,8 +26,11 @@ import com.ch.flavourfair.presentation.detail.DetailProductActivity
 import com.ch.flavourfair.presentation.home.adapter.subadapter.AdapterLayout
 import com.ch.flavourfair.presentation.home.adapter.subadapter.CategoryAdapter
 import com.ch.flavourfair.presentation.home.adapter.subadapter.ProductAdapter
+import com.ch.flavourfair.presentation.main.MainViewModel
 import com.ch.flavourfair.utils.GenericViewModelFactory
 import com.ch.flavourfair.utils.PreferenceDataStoreHelperImpl
+import com.ch.flavourfair.utils.proceedWhen
+import com.ch.flavourfair.utils.toCurrencyFormat
 
 class HomeFragment : Fragment() {
 
@@ -63,13 +69,6 @@ class HomeFragment : Fragment() {
         GenericViewModelFactory.create(HomeViewModel(repo))
     }
 
-    private val viewModelDataStore: HomeDataStore by viewModels {
-        val dataStore = this.requireContext().appDataStore
-        val dataStoreHelper = PreferenceDataStoreHelperImpl(dataStore)
-        val userPreferenceDataSource = UserPreferenceDataSourceImpl(dataStoreHelper)
-        GenericViewModelFactory.create(HomeDataStore(userPreferenceDataSource))
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -88,6 +87,41 @@ class HomeFragment : Fragment() {
 
     }
 
+    private fun setObserveData() {
+        viewModel.productData.observe(viewLifecycleOwner){
+            it.proceedWhen(
+                doOnSuccess = { result ->
+                    binding.layoutState.root.isVisible = false
+                    binding.layoutState.pbLoading.isVisible = false
+                    binding.layoutState.tvError.isVisible = false
+                    binding.rvHome.isVisible = true
+                    result.payload?.let {
+                        adapter.setData(it)
+                    }
+                },
+                doOnLoading = {
+                    binding.layoutState.root.isVisible = true
+                    binding.layoutState.pbLoading.isVisible = true
+                    binding.layoutState.tvError.isVisible = false
+                    binding.rvHome.isVisible = false
+                },
+                doOnError = { err ->
+                    binding.layoutState.root.isVisible = true
+                    binding.layoutState.pbLoading.isVisible = false
+                    binding.layoutState.tvError.isVisible = true
+                    binding.layoutState.tvError.text = err.exception?.message.orEmpty()
+                    binding.rvHome.isVisible = false
+                }, doOnEmpty = {
+                    binding.layoutState.root.isVisible = true
+                    binding.layoutState.pbLoading.isVisible = false
+                    binding.layoutState.tvError.isVisible = true
+                    binding.layoutState.tvError.text = "Empty"
+                    binding.rvHome.isVisible = false
+                }
+            )
+        }
+    }
+
     private fun setupCategoryRecyclerView() {
         binding.rvCategory.adapter = adapterCategory
         adapterCategory.setItems(DummyCategoryDataSourceImpl().getCategoryData())
@@ -98,27 +132,27 @@ class HomeFragment : Fragment() {
         binding.rvHome.apply {
             layoutManager = GridLayoutManager(requireContext(), span)
             adapter = this@HomeFragment.adapter
-        }
-        adapter.setData(datasourceProduct.getProductData())
-        /*viewModel.homeData.observe(viewLifecycleOwner) {
-            adapter.setData(it)
-        }*/
+        }/*
+        adapter.setData(datasourceProduct.getProductData())*/
+        setObserveData()
     }
 
     private fun setupSwitch() {
-        val layoutManager = binding.rvHome.layoutManager as GridLayoutManager
-        binding.ivBtnchangeview.setOnClickListener {
-            val newSpanCount = if (layoutManager.spanCount == 1) 2 else 1
-            layoutManager.spanCount = newSpanCount
-            adapter.adapterLayout =
-                if (newSpanCount == 2) AdapterLayout.GRID else AdapterLayout.LINEAR
-            adapter.refreshList()
+        viewModel.productData.observe(viewLifecycleOwner){
+            val layoutManager = binding.rvHome.layoutManager as GridLayoutManager
+            binding.ivBtnchangeview.setOnClickListener {
+                val newSpanCount = if (layoutManager.spanCount == 1) 2 else 1
+                layoutManager.spanCount = newSpanCount
+                adapter.adapterLayout =
+                    if (newSpanCount == 2) AdapterLayout.GRID else AdapterLayout.LINEAR
+                adapter.refreshList()
+            }
         }
     }
 
     private fun fetchData() {
-        viewModel.homeData.observe(viewLifecycleOwner) {
-            adapter.setData(it)
+        viewModel.productData.observe(viewLifecycleOwner) {
+            adapter.setData(datasourceProduct.getProductData())
         }
     }
 

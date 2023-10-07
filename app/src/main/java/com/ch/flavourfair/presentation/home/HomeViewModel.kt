@@ -23,9 +23,12 @@ class HomeViewModel(private val repo: ProductRepository) : ViewModel() {
             userPreferenceDataSource.setUserGridModePref(isUsingGridMode)
         }
     }*/
-    val homeData: LiveData<List<Product>>
+    /*val homeData: LiveData<List<Product>>
         get() = repo.getProducts().map {
             it.payload ?: emptyList()
-        }.asLiveData(Dispatchers.IO)
+        }.asLiveData(Dispatchers.IO)*/
+
+    val productData : LiveData<ResultWrapper<List<Product>>>
+        get() = repo.getProducts().asLiveData(Dispatchers.IO)
 }
 

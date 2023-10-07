@@ -31,14 +31,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Ayam Bakar" />
+                tools:text="Ayam Bakar" />
 
             <TextView
                 android:id="@+id/tv_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
-                android:text="Rp. 50.000"
+                tools:text="Rp. 50.000"
                 android:textColor="@color/priceColor" />
         </LinearLayout>
 
@@ -83,13 +83,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/iv_add"
+                app:layout_constraintEnd_toStartOf="@id/iv_plus"
                 app:layout_constraintStart_toEndOf="@id/iv_minus"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="1" />
 
             <ImageView
-                android:id="@+id/iv_add"
+                android:id="@+id/iv_plus"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/img_btn_add"
@@ -112,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
-                android:hint="Write ur note"
+                tools:hint="Write ur note"
                 android:imeOptions="actionDone"
                 tools:text="aikowfbawoifhaowifb awbn ouiqawhofin awf oiawf awoif"
                 android:inputType="text"

@@ -29,7 +29,6 @@ interface CartRepository {
 class CartRepositoryImpl(
     private val dataSource: CartDataSource
 ) : CartRepository {
-
     override fun getUserCartData(): Flow<ResultWrapper<Pair<List<CartProduct>, Double>>> {
         return dataSource.getAllCarts().map {
             proceed {
@@ -46,7 +45,7 @@ class CartRepositoryImpl(
             delay(2000)
         }
     }
-    //gunakan di detail
+
     override suspend fun createCart(
         product: Product,
         totalQuantity: Int
