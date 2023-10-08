@@ -69,6 +69,13 @@ class HomeFragment : Fragment() {
         GenericViewModelFactory.create(HomeViewModel(repo))
     }
 
+    private val mainViewModel: MainViewModel by viewModels{
+        val dataStore =  this.requireContext().appDataStore
+        val dataStoreHelper = PreferenceDataStoreHelperImpl(dataStore)
+        val userPreferenceDataSource = UserPreferenceDataSourceImpl(dataStoreHelper)
+        GenericViewModelFactory.create(MainViewModel(userPreferenceDataSource))
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -112,11 +119,7 @@ class HomeFragment : Fragment() {
                     binding.layoutState.tvError.text = err.exception?.message.orEmpty()
                     binding.rvHome.isVisible = false
                 }, doOnEmpty = {
-                    binding.layoutState.root.isVisible = true
-                    binding.layoutState.pbLoading.isVisible = false
-                    binding.layoutState.tvError.isVisible = true
-                    binding.layoutState.tvError.text = "Empty"
-                    binding.rvHome.isVisible = false
+                    Log.d("Home Fragment", "Data is empty")
                 }
             )
         }
@@ -138,13 +141,17 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupSwitch() {
-        viewModel.productData.observe(viewLifecycleOwner){
+        mainViewModel.userGridModeLiveData.observe(viewLifecycleOwner) { isUsingGridMode ->
             val layoutManager = binding.rvHome.layoutManager as GridLayoutManager
             binding.ivBtnchangeview.setOnClickListener {
                 val newSpanCount = if (layoutManager.spanCount == 1) 2 else 1
                 layoutManager.spanCount = newSpanCount
-                adapter.adapterLayout =
-                    if (newSpanCount == 2) AdapterLayout.GRID else AdapterLayout.LINEAR
+
+                val adapterLayout = if (newSpanCount == 2) AdapterLayout.GRID else AdapterLayout.LINEAR
+
+                mainViewModel.setGridModePref(isUsingGridMode)
+
+                adapter.adapterLayout = adapterLayout
                 adapter.refreshList()
             }
         }

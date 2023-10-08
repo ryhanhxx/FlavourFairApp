@@ -52,11 +52,10 @@ class CartListAdapter(
 
     override fun getItemCount(): Int = dataDiffer.currentList.size
 
-    override fun onBindViewHolder(
-        holder: ViewHolder,
-        position: Int,
-    ) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         (holder as ViewHolderBinder<CartProduct>).bind(dataDiffer.currentList[position])
     }
 }
+
+
 

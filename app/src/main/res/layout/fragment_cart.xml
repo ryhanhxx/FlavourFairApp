@@ -37,9 +37,12 @@
         android:id="@+id/rv_cart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        tools:itemCount="3"
-        android:nestedScrollingEnabled="true"
-        app:layout_constraintTop_toBottomOf="@id/v_line"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/cl_order"
+        app:layout_constraintTop_toBottomOf="@+id/v_line"
         tools:listitem="@layout/item_cart_product" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -80,7 +83,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
-                android:id="@+id/tv_totalprice"
+                android:id="@+id/tv_title_totalprice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
@@ -88,12 +91,12 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_price"
+                android:id="@+id/tv_totalprice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
                 android:textColor="@color/priceColor"
-                app:layout_constraintTop_toBottomOf="@id/tv_totalprice"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_totalprice"
                 tools:text="@string/text_total_quantity" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

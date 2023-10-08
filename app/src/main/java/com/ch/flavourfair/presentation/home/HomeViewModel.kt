@@ -15,14 +15,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repo: ProductRepository) : ViewModel() {
-    /*val userGridModeLiveData = userPreferenceDataSource.getUserGridModePrefFlow().asLiveData(
-        Dispatchers.IO)
-
-    fun setUserGridModePref(isUsingGridMode: Boolean) {
-        viewModelScope.launch {
-            userPreferenceDataSource.setUserGridModePref(isUsingGridMode)
-        }
-    }*/
     /*val homeData: LiveData<List<Product>>
         get() = repo.getProducts().map {
             it.payload ?: emptyList()

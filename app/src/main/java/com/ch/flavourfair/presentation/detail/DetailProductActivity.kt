@@ -7,6 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import coil.load
+import com.ch.flavourfair.data.local.database.AppDatabase
+import com.ch.flavourfair.data.local.database.datasource.CartDataSource
+import com.ch.flavourfair.data.local.database.datasource.CartDatabaseDataSource
+import com.ch.flavourfair.data.repository.CartRepository
+import com.ch.flavourfair.data.repository.CartRepositoryImpl
 import com.ch.flavourfair.databinding.ActivityDetailProductBinding
 import com.ch.flavourfair.model.Product
 import com.ch.flavourfair.utils.GenericViewModelFactory
@@ -18,20 +23,28 @@ class DetailProductActivity : AppCompatActivity() {
         ActivityDetailProductBinding.inflate(layoutInflater)
     }
 
-    private val viewModel: DetailProductViewModel by viewModels {
+    /*private val viewModel: DetailProductViewModel by viewModels {
         GenericViewModelFactory.create(DetailProductViewModel(intent?.extras))
+    }*/
+
+    private val viewModel: DetailProductViewModel by viewModels {
+        val database = AppDatabase.getInstance(this)
+        val cartDao = database.cartDao()
+        val cartDataSource: CartDataSource = CartDatabaseDataSource(cartDao)
+        val repo: CartRepository = CartRepositoryImpl(cartDataSource)
+        GenericViewModelFactory.create(DetailProductViewModel(intent?.extras, repo))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        showProductData(viewModel.product)
+        bindProductData(viewModel.product)
         setOnClickLocation()
-        setOnClickQuantity()
+        setOnClickButton()
         observeData()
     }
 
-    private fun setOnClickQuantity() {
+    private fun setOnClickButton() {
         binding.ivBtnBack.setOnClickListener {
             onBackPressed()
         }
@@ -41,30 +54,30 @@ class DetailProductActivity : AppCompatActivity() {
         binding.ivMinus.setOnClickListener {
             viewModel.minus()
         }
+        binding.btnAddtocart.setOnClickListener{
+            viewModel.addToCart()
+        }
     }
 
     private fun setOnClickLocation() {
         binding.tvTextLocation.setOnClickListener {
-            navigateToMaps()
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://maps.app.goo.gl/h4wQKqaBuXzftGK77")
+            )
+            startActivity(intent)
         }
     }
 
-    private fun navigateToMaps() {
-        val intent = Intent(
-            Intent.ACTION_VIEW,
-            Uri.parse("https://maps.app.goo.gl/h4wQKqaBuXzftGK77")
-        )
-        startActivity(intent)
-    }
-
-    private fun showProductData(product: Product?) {
-        product?.apply {
-            binding.ivImage.load(this.imgUrl) {
+    private fun bindProductData(product: Product?) {
+        product?.let { item ->
+            binding.ivImage.load(item.imgUrl) {
                 crossfade(true)
             }
-            binding.tvName.text = this.name
-            binding.tvDesc.text = this.desc
-            binding.tvPrice.text = this.price.toCurrencyFormat()
+            binding.tvName.text = item.name
+            binding.tvDesc.text = item.desc
+            binding.tvPrice.text = item.price.toCurrencyFormat()
+            binding.tvRating.text = item.rating.toString()
         }
     }
 
@@ -72,7 +85,7 @@ class DetailProductActivity : AppCompatActivity() {
         viewModel.priceLiveData.observe(this) {
             binding.tvPrice.text = it.toCurrencyFormat()
         }
-        viewModel.productCountLiveData.observe(this) {
+        viewModel.productQuantityLiveData.observe(this) {
             binding.tvQuantity.text = it.toString()
         }
     }

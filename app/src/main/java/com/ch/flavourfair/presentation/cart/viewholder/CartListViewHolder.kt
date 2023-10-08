@@ -43,10 +43,11 @@ class CartViewHolder(
     }
 
     private fun setClickListeners(item: CartProduct) {
-        with(binding) {
-            ivMinus.setOnClickListener { cartListener?.onMinusTotalItemCartClicked(item.cart) }
+        binding.apply {
             ivPlus.setOnClickListener { cartListener?.onPlusTotalItemCartClicked(item.cart) }
+            ivMinus.setOnClickListener { cartListener?.onMinusTotalItemCartClicked(item.cart) }
             ivDelete.setOnClickListener { cartListener?.onRemoveCartClicked(item.cart) }
+
         }
     }
 }
