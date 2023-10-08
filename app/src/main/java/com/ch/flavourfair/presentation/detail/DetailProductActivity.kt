@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import coil.load
 import com.ch.flavourfair.data.local.database.AppDatabase
@@ -15,6 +16,7 @@ import com.ch.flavourfair.data.repository.CartRepositoryImpl
 import com.ch.flavourfair.databinding.ActivityDetailProductBinding
 import com.ch.flavourfair.model.Product
 import com.ch.flavourfair.utils.GenericViewModelFactory
+import com.ch.flavourfair.utils.proceedWhen
 import com.ch.flavourfair.utils.toCurrencyFormat
 
 class DetailProductActivity : AppCompatActivity() {
@@ -59,6 +61,7 @@ class DetailProductActivity : AppCompatActivity() {
         }
     }
 
+
     private fun setOnClickLocation() {
         binding.tvTextLocation.setOnClickListener {
             val intent = Intent(
@@ -87,6 +90,17 @@ class DetailProductActivity : AppCompatActivity() {
         }
         viewModel.productQuantityLiveData.observe(this) {
             binding.tvQuantity.text = it.toString()
+        }
+
+        viewModel.addToCartLiveData.observe(this) {
+            it.proceedWhen(
+                doOnSuccess = {
+                    Toast.makeText(this, "Product has been in cart", Toast.LENGTH_SHORT).show()
+                    finish()
+                }, doOnError = {
+                    /*Toast.makeText(this, it.exception?.message.orEmpty(), Toast.LENGTH_SHORT).show()*/
+                    Toast.makeText(this, "Failed add to cart", Toast.LENGTH_SHORT).show()
+                })
         }
     }
 

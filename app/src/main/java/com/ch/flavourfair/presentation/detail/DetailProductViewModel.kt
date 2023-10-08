@@ -26,7 +26,7 @@ class DetailProductViewModel(
         postValue(0)
     }
 
-    private val _result = MutableLiveData<ResultWrapper<Boolean>>()
+    val addToCartLiveData = MutableLiveData<ResultWrapper<Boolean>>()
 
     fun add() {
         val count = (productQuantityLiveData.value ?: 0) + 1
@@ -49,7 +49,7 @@ class DetailProductViewModel(
 
             product?.let {
                 repo.createCart(product, productQuantity).collect { result ->
-                    _result.postValue(result)
+                    addToCartLiveData.postValue(result)
                 }
             }
         }
