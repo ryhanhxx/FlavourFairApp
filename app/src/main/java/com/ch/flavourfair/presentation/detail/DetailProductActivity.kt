@@ -97,7 +97,6 @@ class DetailProductActivity : AppCompatActivity() {
                 doOnSuccess = {
                     Toast.makeText(this, "Product has been in cart", Toast.LENGTH_SHORT).show()
                 }, doOnError = {
-                    /*Toast.makeText(this, it.exception?.message.orEmpty(), Toast.LENGTH_SHORT).show()*/
                     Toast.makeText(this, "Failed add to cart", Toast.LENGTH_SHORT).show()
                 })
         }
