@@ -18,25 +18,25 @@ interface ProductDataSource {
 
 }
 
-class ProductDatabaseDataSource(private val dao : ProductDao) : ProductDataSource {
+class ProductDatabaseDataSource(private val productDao : ProductDao) : ProductDataSource {
     override fun getAllProducts(): Flow<List<ProductEntity>> {
-        return dao.getAllProducts()
+        return productDao.getAllProducts()
     }
 
     override fun getProductById(id: Int): Flow<ProductEntity> {
-        return dao.getProductById(id)
+        return productDao.getProductById(id)
     }
 
     override suspend fun insertProducts(product: List<ProductEntity>) {
-        return dao.insertProduct(product)
+        return productDao.insertProduct(product)
     }
 
     override suspend fun deleteProduct(product: ProductEntity): Int {
-        return dao.deleteProduct(product)
+        return productDao.deleteProduct(product)
     }
 
     override suspend fun updateProduct(product: ProductEntity): Int {
-        return dao.updateProduct(product)
+        return productDao.updateProduct(product)
     }
 
 }
