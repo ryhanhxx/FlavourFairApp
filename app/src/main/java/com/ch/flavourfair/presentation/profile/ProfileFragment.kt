@@ -20,8 +20,6 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        /*val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)*/
 
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
