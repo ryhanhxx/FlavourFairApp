@@ -64,7 +64,7 @@
                 android:fontFamily="@font/poppins"
                 android:gravity="center"
                 android:text="Take to the resto"
-                android:textColor="@color/white" />
+                android:textColor="@drawable/text_toggle" />
 
             <RadioButton
                 android:id="@+id/rb_delivery"
@@ -79,7 +79,7 @@
                 android:fontFamily="@font/poppins"
                 android:gravity="center"
                 android:text="Delivery"
-                android:textColor="@color/white" />
+                android:textColor="@drawable/text_toggle" />
         </RadioGroup>
 
         <View
@@ -145,7 +145,7 @@
                     android:fontFamily="@font/poppins"
                     android:gravity="center"
                     android:text="Cash"
-                    android:textColor="@color/white" />
+                    android:textColor="@drawable/text_toggle" />
 
                 <RadioButton
                     android:id="@+id/rb_ewallet"
@@ -160,7 +160,7 @@
                     android:fontFamily="@font/poppins"
                     android:gravity="center"
                     android:text="E-Wallet"
-                    android:textColor="@color/white" />
+                    android:textColor="@drawable/text_toggle" />
             </RadioGroup>
 
             <View
@@ -214,10 +214,10 @@
                     android:gravity="end"
                     android:padding="10dp"
                     android:text="Rp 56.000"
+                    android:textColor="@color/priceColor"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/tv_detail"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:textColor="@color/priceColor"/>
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -226,9 +226,9 @@
             android:id="@+id/btn_order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/primaryColor"
             android:fontFamily="@font/poppins_semibold"
             android:text="@string/btn_order"
-            android:backgroundTint="@color/primaryColor"
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

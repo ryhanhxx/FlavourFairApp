@@ -7,4 +7,5 @@
     <color name="thirdColor">#FFAFBD87</color>
     <color name="priceColor">#FFC63D2F</color>
     <color name="trashColor">#FF4040</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>
