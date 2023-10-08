@@ -52,14 +52,12 @@ class CartFragment : Fragment() {
             }
 
             override fun onUserDoneEditingNotes(cart: Cart) {
-                //todo : edit notes cart item
+                viewModel.updateNote(cart)
             }
         })
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentCartBinding.inflate(inflater, container, false)
         return binding.root
     }

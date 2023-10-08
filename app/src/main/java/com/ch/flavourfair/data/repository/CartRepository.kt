@@ -24,6 +24,7 @@ interface CartRepository {
     suspend fun increaseCart(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun setCartNotes(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun deleteCart(item: Cart): Flow<ResultWrapper<Boolean>>
+    abstract fun updateNote(item: Cart): Flow<ResultWrapper<Boolean>>
 }
 
 class CartRepositoryImpl(
@@ -86,6 +87,10 @@ class CartRepositoryImpl(
 
     override suspend fun deleteCart(item: Cart): Flow<ResultWrapper<Boolean>> {
         return proceedFlow { dataSource.deleteCart(item.toCartEntity()) > 0 }
+    }
+
+    override fun updateNote(item: Cart): Flow<ResultWrapper<Boolean>> {
+        TODO("Not yet implemented")
     }
 }
 

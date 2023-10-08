@@ -31,10 +31,7 @@ class CartListAdapter(
         }
     })
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int,
-    ): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int, ): ViewHolder {
         return if (cartListener != null) CartViewHolder(
             ItemCartProductBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
