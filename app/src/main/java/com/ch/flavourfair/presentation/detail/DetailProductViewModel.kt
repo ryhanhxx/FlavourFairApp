@@ -42,16 +42,21 @@ class DetailProductViewModel(
         }
     }
 
+    private fun calculateProductQuantity(): Int {
+        val currentQuantity = productQuantityLiveData.value ?: 0
+        return if (currentQuantity <= 0) 1 else currentQuantity //0 Quantity handler.
+    }
+
     fun addToCart() {
         viewModelScope.launch {
-            val currentQuantity = productQuantityLiveData.value ?: 0
-            val productQuantity = if (currentQuantity <= 0) 1 else currentQuantity //It cannot 0Q
-
-            product?.let {
+            val productQuantity = calculateProductQuantity()
+            product?.let { product ->
                 repo.createCart(product, productQuantity).collect { result ->
                     addToCartLiveData.postValue(result)
                 }
             }
         }
     }
+
+
 }
