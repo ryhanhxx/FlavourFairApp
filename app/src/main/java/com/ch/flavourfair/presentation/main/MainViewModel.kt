@@ -7,12 +7,12 @@ import com.ch.flavourfair.data.local.datastore.UserPreferenceDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val userPreferenceDataSource: UserPreferenceDataSource) : ViewModel() {
-    val userGridModeLiveData = userPreferenceDataSource.getUserGridModePrefFlow().asLiveData(Dispatchers.IO)
+class MainViewModel(private val repo: UserPreferenceDataSource) : ViewModel() {
+    val userGridModeLiveData = repo.getUserGridModePrefFlow().asLiveData(Dispatchers.IO)
 
     fun setGridModePref(isUsingGridMode : Boolean){
         viewModelScope.launch {
-            userPreferenceDataSource.setUserGridModePref(isUsingGridMode)
+            repo.setUserGridModePref(isUsingGridMode)
         }
     }
 }

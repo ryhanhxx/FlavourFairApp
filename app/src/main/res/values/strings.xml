@@ -34,4 +34,24 @@
     <string name="text_title_method">Shipping Method</string>
     <string name="text_title_payment">Payment Method</string>
     <string name="text_total_quantity">x%s</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_name">Name</string>
+    <string name="text_login_here">Already have an account? Login Here</string>
+    <string name="btn_signup">SIGN UP</string>
+    <string name="text_privacypolicy">By registering, you confirm that you accept our Term of Use and Privacy Policy.</string>
+    <string name="btn_login">Login</string>
+    <string name="text_register">Havent an account? Register Here</string>
+    <string name="text_highlight_login_here">Login Here</string>
+    <string name="text_error_name_cannot_empty">Name Cannot be empty</string>
+    <string name="text_error_email_empty">Email cannot be empty</string>
+    <string name="text_error_email_invalid">Invalid email format</string>
+    <string name="text_error_password_empty">Password should not be empty</string>
+    <string name="text_error_password_less_than_8_char">Password cannot less than 8 character</string>
+    <string name="text_password_does_not_match">Password doesn\'t match</string>
+    <string name="text_change_profile">Edit Profile</string>
+    <string name="text_change_password">Change Password</string>
+    <string name="text_logout">Logout\n</string>
+    <string name="text_highlight_register">Register Here</string>
 </resources>

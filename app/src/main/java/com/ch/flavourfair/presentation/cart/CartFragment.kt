@@ -16,7 +16,6 @@ import com.ch.flavourfair.data.repository.CartRepository
 import com.ch.flavourfair.data.repository.CartRepositoryImpl
 import com.ch.flavourfair.databinding.FragmentCartBinding
 import com.ch.flavourfair.model.Cart
-import com.ch.flavourfair.model.CartProduct
 import com.ch.flavourfair.presentation.cart.adapter.CartListAdapter
 import com.ch.flavourfair.presentation.cart.viewholder.CartListener
 import com.ch.flavourfair.presentation.checkout.CheckoutProductActivity

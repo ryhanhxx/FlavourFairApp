@@ -61,7 +61,6 @@ class DetailProductActivity : AppCompatActivity() {
         }
     }
 
-
     private fun setOnClickLocation() {
         binding.tvTextLocation.setOnClickListener {
             val intent = Intent(
