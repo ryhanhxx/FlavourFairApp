@@ -8,6 +8,7 @@ import com.ch.flavourfair.databinding.ItemCartProductBinding
 import com.ch.flavourfair.databinding.ItemCartProductCheckoutBinding
 import com.ch.flavourfair.model.Cart
 import com.ch.flavourfair.utils.doneEditing
+import com.ch.flavourfair.utils.toCurrencyFormat
 
 class CartViewHolder(
     private val binding: ItemCartProductBinding,
@@ -26,7 +27,7 @@ class CartViewHolder(
             }
             tvQuantity.text = item.itemQuantity.toString()
             tvName.text = item.productName
-            tvPrice.text = (item.itemQuantity * item.productPrice).toString()
+            tvPrice.text = (item.itemQuantity * item.productPrice).toCurrencyFormat()
         }
     }
 
