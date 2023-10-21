@@ -5,6 +5,7 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.devtools.ksp")
     id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -44,23 +45,21 @@ android {
     flavorDimensions += "env"
     productFlavors {
         create("production") {
-            buildConfigField("String", "BASE_URL", "\"https://39cc9dac-21fc-401d-9cec-9100ffc66406.mock.pstmn.io\"")
+            buildConfigField("String", "BASE_URL", "\"https://9d0fc6b8-7966-43f8-a50d-aa9eb34afef4.mock.pstmn.io\"")
         }
         create("integration") {
-            buildConfigField("String", "BASE_URL", "\"https://39cc9dac-21fc-401d-9cec-9100ffc66406.mock.pstmn.io\"")
+            buildConfigField("String", "BASE_URL", "\"https://9d0fc6b8-7966-43f8-a50d-aa9eb34afef4.mock.pstmn.io\"")
         }
     }
 }
 
 dependencies {
-
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.3")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.3")
-    implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -82,4 +81,8 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
+
+    implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
+    implementation("com.google.firebase:firebase-crashlytics:18.5.0")
+    implementation("com.google.firebase:firebase-analytics:21.4.0")
 }

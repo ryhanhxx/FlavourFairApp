@@ -11,19 +11,23 @@ class DummyCategoryDataSourceImpl() : DummyCategoryDataSource {
         return mutableListOf(
             Category(
                 imgUrl = "https://raw.githubusercontent.com/ryhanhxx/FlavourFairApp/master/app/src/main/res/drawable/img_burger_icon.webp",
-                name = "Burger"
+                name = "Burger",
+                slug = "Burger",
             ),
             Category(
                 imgUrl="https://raw.githubusercontent.com/ryhanhxx/FlavourFairApp/master/app/src/main/res/drawable/img_mie_icon.webp",
-                name = "Mie"
+                name = "Mie",
+                slug = "Mie",
             ),
             Category(
                 imgUrl="https://raw.githubusercontent.com/ryhanhxx/FlavourFairApp/master/app/src/main/res/drawable/img_snack_icon.webp",
-                name = "Snack"
+                name = "Snack",
+                slug = "Snack",
             ),
             Category(
                 imgUrl="https://raw.githubusercontent.com/ryhanhxx/FlavourFairApp/master/app/src/main/res/drawable/img_drink_icon.webp",
-                name = "Drink"
+                name = "Drink",
+                slug = "Drink",
             )
         )
     }

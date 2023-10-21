@@ -51,8 +51,12 @@ class CartFragment : Fragment() {
             }
 
             override fun onUserDoneEditingNotes(cart: Cart) {
-                viewModel.updateNote(cart)
+                TODO("Not yet implemented")
             }
+
+            /*override fun onUserDoneEditingNotes(cart: Cart) {
+                viewModel.updateNote(cart)
+            }*/
         })
     }
 

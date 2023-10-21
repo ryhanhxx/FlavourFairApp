@@ -3,13 +3,14 @@ package com.ch.flavourfair.data.repository
 import com.ch.flavourfair.data.local.database.datasource.CartDataSource
 import com.ch.flavourfair.data.local.database.entity.CartEntity
 import com.ch.flavourfair.data.local.database.mapper.toCartEntity
-import com.ch.flavourfair.data.local.database.mapper.toCartProductList
+import com.ch.flavourfair.data.local.database.mapper.toCartList
 import com.ch.flavourfair.model.Cart
 import com.ch.flavourfair.model.CartProduct
 import com.ch.flavourfair.model.Product
 import com.ch.flavourfair.utils.ResultWrapper
 import com.ch.flavourfair.utils.proceed
 import com.ch.flavourfair.utils.proceedFlow
+import com.ch.flavourfair.utils.toCurrencyFormat
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -18,33 +19,40 @@ import kotlinx.coroutines.flow.onStart
 import java.lang.IllegalStateException
 
 interface CartRepository {
-    fun getUserCartData(): Flow<ResultWrapper<Pair<List<CartProduct>, Double>>>
+    fun getUserCartData(): Flow<ResultWrapper<Pair<List<Cart>, Double>>>
     suspend fun createCart(product: Product, totalQuantity: Int): Flow<ResultWrapper<Boolean>>
     suspend fun decreaseCart(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun increaseCart(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun setCartNotes(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun deleteCart(item: Cart): Flow<ResultWrapper<Boolean>>
-    suspend fun updateNote(item: Cart): Flow<ResultWrapper<Boolean>>
 }
 
 class CartRepositoryImpl(
     private val dataSource: CartDataSource
 ) : CartRepository {
-    override fun getUserCartData(): Flow<ResultWrapper<Pair<List<CartProduct>, Double>>> {
-        return dataSource.getAllCarts().map {
-            proceed {
-                val cartList = it.toCartProductList()
-                val totalPrice = cartList.sumOf {
-                    val quantity = it.cart.itemQuantity
-                    val pricePerItem = it.product.price
-                    quantity * pricePerItem
+
+    override fun getUserCartData(): Flow<ResultWrapper<Pair<List<Cart>, Double>>> {
+        return dataSource.getAllCarts()
+            .map {
+                proceed {
+                    val result = it.toCartList()
+                    val totalPrice = result.sumOf {
+                        val pricePerItem = it.productPrice
+                        val quantity = it.itemQuantity
+                        pricePerItem * quantity
+                    }
+                    Pair(result, totalPrice)
                 }
-                Pair(cartList, totalPrice)
+            }.map {
+                if (it.payload?.first?.isEmpty() == true)
+                    ResultWrapper.Empty(it.payload)
+                else
+                    it
             }
-        }.onStart {
-            emit(ResultWrapper.Loading())
-            delay(2000)
-        }
+            .onStart {
+                emit(ResultWrapper.Loading())
+                delay(2000)
+            }
     }
 
     override suspend fun createCart(
@@ -54,7 +62,13 @@ class CartRepositoryImpl(
         return product.id?.let { productId ->
             proceedFlow {
                 val affectedRow = dataSource.insertCart(
-                    CartEntity(productId = productId, itemQuantity = totalQuantity)
+                    CartEntity(
+                        productId = productId,
+                        itemQuantity = totalQuantity,
+                        productImgUrl = product.imgUrl,
+                        productName = product.name,
+                        productPrice = product.price
+                    )
                 )
                 affectedRow > 0
             }
@@ -89,8 +103,5 @@ class CartRepositoryImpl(
         return proceedFlow { dataSource.deleteCart(item.toCartEntity()) > 0 }
     }
 
-    override suspend fun updateNote(item: Cart): Flow<ResultWrapper<Boolean>> {
-        TODO("Not yet implemented")
-    }
 }
 

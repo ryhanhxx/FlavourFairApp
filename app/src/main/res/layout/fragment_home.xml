@@ -90,11 +90,21 @@
 
             </androidx.cardview.widget.CardView>
 
+            <include
+                android:id="@+id/layout_state_category"
+                layout="@layout/common_layout_cart_state"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/cv_banner" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
+                android:visibility="gone"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@id/cv_banner"
@@ -132,16 +142,19 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <include
-                android:id="@+id/layout_state"
+                android:id="@+id/layout_state_product"
                 layout="@layout/common_layout_cart_state"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:visibility="gone"
+                tools:visibility="visible"
                 app:layout_constraintTop_toBottomOf="@id/cl_subheader" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_home"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:visibility="gone"
                 android:nestedScrollingEnabled="false"
                 app:layout_constraintTop_toBottomOf="@id/cl_subheader"
                 tools:listitem="@layout/item_product_list" />

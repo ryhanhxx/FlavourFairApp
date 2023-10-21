@@ -7,51 +7,50 @@ import com.ch.flavourfair.core.ViewHolderBinder
 import com.ch.flavourfair.databinding.ItemCartProductBinding
 import com.ch.flavourfair.databinding.ItemCartProductCheckoutBinding
 import com.ch.flavourfair.model.Cart
-import com.ch.flavourfair.model.CartProduct
 import com.ch.flavourfair.utils.doneEditing
 
 class CartViewHolder(
     private val binding: ItemCartProductBinding,
     private val cartListener: CartListener?
-) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<CartProduct> {
-    override fun bind(item: CartProduct) {
+) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<Cart> {
+    override fun bind(item: Cart) {
         setCartData(item)
         setCartNotes(item)
         setClickListeners(item)
     }
 
-    private fun setCartData(item: CartProduct) {
+    private fun setCartData(item: Cart) {
         with(binding) {
-            binding.ivImage.load(item.product.imgUrl) {
+            binding.ivImage.load(item.productImgUrl) {
                 crossfade(true)
             }
-            tvQuantity.text = item.cart.itemQuantity.toString()
-            tvName.text = item.product.name
-            tvPrice.text = (item.cart.itemQuantity * item.product.price).toString()
+            tvQuantity.text = item.itemQuantity.toString()
+            tvName.text = item.productName
+            tvPrice.text = (item.itemQuantity * item.productPrice).toString()
         }
     }
 
-    private fun setCartNotes(item: CartProduct) {
-        binding.etNote.setText(item.cart.itemNotes)
+    private fun setCartNotes(item: Cart) {
+        binding.etNote.setText(item.itemNotes)
         binding.etNote.doneEditing {
             binding.etNote.clearFocus()
-            val newItem = item.cart.copy().apply {
+            val newItem = item.copy().apply {
                 itemNotes = binding.etNote.text.toString().trim()
             }
             cartListener?.onUserDoneEditingNotes(newItem)
         }
     }
 
-    private fun setClickListeners(item: CartProduct) {
+    private fun setClickListeners(item: Cart) {
         binding.apply {
             ivPlus.setOnClickListener {
-                cartListener?.onPlusTotalItemCartClicked(item.cart)
+                cartListener?.onPlusTotalItemCartClicked(item)
             }
             ivMinus.setOnClickListener {
-                cartListener?.onMinusTotalItemCartClicked(item.cart)
+                cartListener?.onMinusTotalItemCartClicked(item)
             }
             ivDelete.setOnClickListener {
-                cartListener?.onRemoveCartClicked(item.cart)
+                cartListener?.onRemoveCartClicked(item)
             }
         }
     }
@@ -59,29 +58,29 @@ class CartViewHolder(
 
 class CartCheckoutViewHolder(
     private val binding: ItemCartProductCheckoutBinding,
-) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<CartProduct> {
-    override fun bind(item: CartProduct) {
+) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<Cart> {
+    override fun bind(item: Cart) {
         setCartData(item)
         setCartNotes(item)
     }
 
-    private fun setCartData(item: CartProduct) {
+    private fun setCartData(item: Cart) {
         with(binding) {
-            binding.ivImage.load(item.product.imgUrl) {
+            binding.ivImage.load(item.productImgUrl) {
                 crossfade(true)
             }
             tvQuantity.text =
                 itemView.rootView.context.getString(
                     R.string.text_total_quantity,
-                    item.cart.itemQuantity.toString()
+                    item.itemQuantity.toString()
                 )
-            tvName.text = item.product.name
-            tvPrice.text = (item.cart.itemQuantity * item.product.price).toString()
+            tvName.text = item.productName
+            tvPrice.text = (item.itemQuantity * item.productPrice).toString()
         }
     }
 
-    private fun setCartNotes(item: CartProduct) {
-        binding.tvNotes.text = item.cart.itemNotes
+    private fun setCartNotes(item: Cart) {
+        binding.tvNotes.text = item.itemNotes
     }
 }
 

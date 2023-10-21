@@ -8,6 +8,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.ch.flavourfair.data.local.datastore.UserPreferenceDataSource
 import com.ch.flavourfair.data.repository.ProductRepository
+import com.ch.flavourfair.model.Category
 import com.ch.flavourfair.model.Product
 import com.ch.flavourfair.utils.ResultWrapper
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +21,31 @@ class HomeViewModel(private val repo: ProductRepository) : ViewModel() {
             it.payload ?: emptyList()
         }.asLiveData(Dispatchers.IO)*/
 
-    val productData : LiveData<ResultWrapper<List<Product>>>
-        get() = repo.getProducts().asLiveData(Dispatchers.IO)
+    /*val productData : LiveData<ResultWrapper<List<Product>>>
+        get() = repo.getProducts().asLiveData(Dispatchers.IO)*/
+
+    private val _categories = MutableLiveData<ResultWrapper<List<Category>>>()
+    val categories : LiveData<ResultWrapper<List<Category>>>
+        get() = _categories
+
+    private val _products = MutableLiveData<ResultWrapper<List<Product>>>()
+    val products : LiveData<ResultWrapper<List<Product>>>
+        get() = _products
+
+    fun getCategories(){
+        viewModelScope.launch(Dispatchers.IO) {
+            repo.getCategories().collect{
+                _categories.postValue(it)
+            }
+        }
+    }
+
+    fun getProducts(category: String? = null){
+        viewModelScope.launch(Dispatchers.IO) {
+            repo.getProducts(if(category == "all") null else category).collect{
+                _products.postValue(it)
+            }
+        }
+    }
 }
 

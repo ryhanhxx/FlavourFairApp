@@ -26,9 +26,9 @@ class CartViewModel(private val repo: CartRepository) : ViewModel() {
         viewModelScope.launch {repo.deleteCart(item).collect()}
     }
 
-    fun updateNote(item: Cart) {
+    /*fun updateNote(item: Cart) {
         viewModelScope.launch {repo.updateNote(item).collect()}
-    }
+    }*/
 
 
 }

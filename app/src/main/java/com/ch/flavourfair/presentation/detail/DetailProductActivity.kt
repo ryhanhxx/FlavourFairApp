@@ -79,7 +79,6 @@ class DetailProductActivity : AppCompatActivity() {
             binding.tvName.text = item.name
             binding.tvDesc.text = item.desc
             binding.tvPrice.text = item.price.toCurrencyFormat()
-            binding.tvRating.text = item.rating.toString()
         }
     }
 
