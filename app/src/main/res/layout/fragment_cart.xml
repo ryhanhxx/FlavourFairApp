@@ -13,7 +13,7 @@
         android:fontFamily="@font/poppins_semibold"
         android:gravity="center"
         android:padding="10dp"
-        android:text="@string/text_title_cart"
+        android:text="@string/text_cart"
         android:textColor="@color/primaryColor"
         android:textSize="22sp"
         app:layout_constraintTop_toTopOf="parent" />
@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
-                android:text="@string/text_title_totalprice"
+                android:text="@string/text_totalprice"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -97,7 +97,7 @@
                 android:fontFamily="@font/poppins"
                 android:textColor="@color/priceColor"
                 app:layout_constraintTop_toBottomOf="@id/tv_title_totalprice"
-                tools:text="@string/text_total_quantity" />
+                tools:text="@string/text_total_price" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

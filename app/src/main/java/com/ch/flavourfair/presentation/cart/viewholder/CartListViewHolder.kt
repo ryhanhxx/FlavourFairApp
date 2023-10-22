@@ -72,11 +72,11 @@ class CartCheckoutViewHolder(
             }
             tvQuantity.text =
                 itemView.rootView.context.getString(
-                    R.string.text_total_quantity,
+                    R.string.text_total_price,
                     item.itemQuantity.toString()
                 )
             tvName.text = item.productName
-            tvPrice.text = (item.itemQuantity * item.productPrice).toString()
+            tvPrice.text = (item.itemQuantity * item.productPrice).toCurrencyFormat()
         }
     }
 

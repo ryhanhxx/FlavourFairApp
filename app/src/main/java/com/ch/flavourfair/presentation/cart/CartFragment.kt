@@ -12,6 +12,8 @@ import androidx.fragment.app.viewModels
 import com.ch.flavourfair.data.local.database.AppDatabase
 import com.ch.flavourfair.data.local.database.datasource.CartDataSource
 import com.ch.flavourfair.data.local.database.datasource.CartDatabaseDataSource
+import com.ch.flavourfair.data.network.api.datasource.FlavourfairApiDataSource
+import com.ch.flavourfair.data.network.api.service.FlavourfairApiService
 import com.ch.flavourfair.data.repository.CartRepository
 import com.ch.flavourfair.data.repository.CartRepositoryImpl
 import com.ch.flavourfair.databinding.FragmentCartBinding
@@ -31,7 +33,9 @@ class CartFragment : Fragment() {
         val database = AppDatabase.getInstance(requireContext())
         val cartDao = database.cartDao()
         val cartDataSource: CartDataSource = CartDatabaseDataSource(cartDao)
-        val repo: CartRepository = CartRepositoryImpl(cartDataSource)
+        val service = FlavourfairApiService.invoke()
+        val apiDataSource = FlavourfairApiDataSource(service)
+        val repo: CartRepository = CartRepositoryImpl(cartDataSource,apiDataSource)
         GenericViewModelFactory.create(CartViewModel(repo))
     }
 

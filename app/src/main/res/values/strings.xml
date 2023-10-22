@@ -21,19 +21,19 @@
     <string name="text_titlebanner">Flavour Dash</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="text_title_location">Location</string>
+    <string name="text_location">Location</string>
     <string name="text_desc_location" href="https://maps.app.goo.gl/h4wQKqaBuXzftGK77">Jl. BSD Green Office Park Jl. BSD Grand Boulevard, Sampora, BSD, Kabupaten Tangerang Banten 15345</string>
     <string name="btn_addcart">Add to cart</string>
     <string name="btn_order">Order Now</string>
     <string name="text_rating">(4,7K Review)</string>
-    <string name="text_title_cart">Cart</string>
-    <string name="text_title_totalprice">Total Price</string>
+    <string name="text_cart">Cart</string>
+    <string name="text_totalprice">Total Price</string>
     <string name="text_btn_order">Order Now</string>
-    <string name="text_title_profile">Profile</string>
-    <string name="text_title_checkout">Checkout</string>
-    <string name="text_title_method">Shipping Method</string>
-    <string name="text_title_payment">Payment Method</string>
-    <string name="text_total_quantity">x%s</string>
+    <string name="text_profile">Profile</string>
+    <string name="text_checkout">Checkout</string>
+    <string name="text_shipping_method">Shipping Method</string>
+    <string name="text_payment_method">Payment Method</string>
+    <string name="text_total_price">x%s</string>
     <string name="hint_password">Password</string>
     <string name="hint_confirm_password">Confirm Password</string>
     <string name="hint_email">Email</string>
@@ -54,4 +54,11 @@
     <string name="text_change_password">Change Password</string>
     <string name="text_logout">Logout\n</string>
     <string name="text_highlight_register">Register Here</string>
+    <string name="text_okay">OK</string>
+    <string name="text_cart_is_empty">\"Cart is Empty\"</string>
+    <string name="text_takeaway">Take to the resto</string>
+    <string name="text_delivery">Delivery</string>
+    <string name="text_cash">Cash</string>
+    <string name="text_ewallet">E-Wallet</string>
+    <string name="text_payment_summary">Payment Summary</string>
 </resources>

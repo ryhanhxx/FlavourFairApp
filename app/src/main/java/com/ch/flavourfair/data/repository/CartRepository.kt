@@ -4,6 +4,9 @@ import com.ch.flavourfair.data.local.database.datasource.CartDataSource
 import com.ch.flavourfair.data.local.database.entity.CartEntity
 import com.ch.flavourfair.data.local.database.mapper.toCartEntity
 import com.ch.flavourfair.data.local.database.mapper.toCartList
+import com.ch.flavourfair.data.network.api.datasource.FlavourfairDataSource
+import com.ch.flavourfair.data.network.api.model.order.OrderItemRequest
+import com.ch.flavourfair.data.network.api.model.order.OrderRequest
 import com.ch.flavourfair.model.Cart
 import com.ch.flavourfair.model.CartProduct
 import com.ch.flavourfair.model.Product
@@ -25,10 +28,13 @@ interface CartRepository {
     suspend fun increaseCart(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun setCartNotes(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun deleteCart(item: Cart): Flow<ResultWrapper<Boolean>>
+    suspend fun order(items: List<Cart>): Flow<ResultWrapper<Boolean>>
+    suspend fun deleteAll()
 }
 
 class CartRepositoryImpl(
-    private val dataSource: CartDataSource
+    private val dataSource: CartDataSource,
+    private val FlavourfairDataSource: FlavourfairDataSource
 ) : CartRepository {
 
     override fun getUserCartData(): Flow<ResultWrapper<Pair<List<Cart>, Double>>> {
@@ -101,6 +107,20 @@ class CartRepositoryImpl(
 
     override suspend fun deleteCart(item: Cart): Flow<ResultWrapper<Boolean>> {
         return proceedFlow { dataSource.deleteCart(item.toCartEntity()) > 0 }
+    }
+
+    override suspend fun order(items: List<Cart>): Flow<ResultWrapper<Boolean>> {
+        return proceedFlow {
+            val orderItems = items.map {
+                OrderItemRequest(it.itemNotes, it.productId, it.itemQuantity)
+            } // xxx -> ppp
+            val orderRequest = OrderRequest(orderItems)
+            FlavourfairDataSource.createOrder(orderRequest).status == true
+        }
+    }
+
+    override suspend fun deleteAll() {
+        dataSource.deleteAll()
     }
 
 }

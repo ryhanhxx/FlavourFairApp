@@ -85,4 +85,6 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
     implementation("com.google.firebase:firebase-crashlytics:18.5.0")
     implementation("com.google.firebase:firebase-analytics:21.4.0")
+
+    implementation("androidx.recyclerview:recyclerview:1.3.1")
 }
