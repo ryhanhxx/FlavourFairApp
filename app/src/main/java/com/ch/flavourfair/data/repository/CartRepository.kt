@@ -8,12 +8,10 @@ import com.ch.flavourfair.data.network.api.datasource.FlavourfairDataSource
 import com.ch.flavourfair.data.network.api.model.order.OrderItemRequest
 import com.ch.flavourfair.data.network.api.model.order.OrderRequest
 import com.ch.flavourfair.model.Cart
-import com.ch.flavourfair.model.CartProduct
 import com.ch.flavourfair.model.Product
 import com.ch.flavourfair.utils.ResultWrapper
 import com.ch.flavourfair.utils.proceed
 import com.ch.flavourfair.utils.proceedFlow
-import com.ch.flavourfair.utils.toCurrencyFormat
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -50,10 +48,11 @@ class CartRepositoryImpl(
                     Pair(result, totalPrice)
                 }
             }.map {
-                if (it.payload?.first?.isEmpty() == true)
+                if (it.payload?.first?.isEmpty() == true) {
                     ResultWrapper.Empty(it.payload)
-                else
+                } else {
                     it
+                }
             }
             .onStart {
                 emit(ResultWrapper.Loading())
@@ -122,6 +121,4 @@ class CartRepositoryImpl(
     override suspend fun deleteAll() {
         dataSource.deleteAll()
     }
-
 }
-

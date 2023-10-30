@@ -3,10 +3,10 @@ package com.ch.flavourfair.presentation.detail
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import com.ch.flavourfair.data.local.database.AppDatabase
 import com.ch.flavourfair.data.local.database.datasource.CartDataSource
@@ -20,6 +20,7 @@ import com.ch.flavourfair.model.Product
 import com.ch.flavourfair.utils.GenericViewModelFactory
 import com.ch.flavourfair.utils.proceedWhen
 import com.ch.flavourfair.utils.toCurrencyFormat
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 
 class DetailProductActivity : AppCompatActivity() {
 
@@ -27,17 +28,14 @@ class DetailProductActivity : AppCompatActivity() {
         ActivityDetailProductBinding.inflate(layoutInflater)
     }
 
-    /*private val viewModel: DetailProductViewModel by viewModels {
-        GenericViewModelFactory.create(DetailProductViewModel(intent?.extras))
-    }*/
-
     private val viewModel: DetailProductViewModel by viewModels {
         val database = AppDatabase.getInstance(this)
         val cartDao = database.cartDao()
         val cartDataSource: CartDataSource = CartDatabaseDataSource(cartDao)
-        val service = FlavourfairApiService.invoke()
+        val chuckerInterceptor = ChuckerInterceptor(applicationContext)
+        val service = FlavourfairApiService.invoke(chuckerInterceptor)
         val apiDataSource = FlavourfairApiDataSource(service)
-        val repo: CartRepository = CartRepositoryImpl(cartDataSource,apiDataSource)
+        val repo: CartRepository = CartRepositoryImpl(cartDataSource, apiDataSource)
         GenericViewModelFactory.create(DetailProductViewModel(intent?.extras, repo))
     }
 
@@ -60,7 +58,7 @@ class DetailProductActivity : AppCompatActivity() {
         binding.ivMinus.setOnClickListener {
             viewModel.minus()
         }
-        binding.btnAddtocart.setOnClickListener{
+        binding.btnAddtocart.setOnClickListener {
             viewModel.addToCart()
         }
     }
@@ -95,10 +93,9 @@ class DetailProductActivity : AppCompatActivity() {
         }
 
         viewModel.addToCartLiveData.observe(this) {
-            it.proceedWhen(
-                doOnSuccess = {
-                    Toast.makeText(this, "Product has been in cart", Toast.LENGTH_SHORT).show()
-                }, doOnError = {
+            it.proceedWhen(doOnSuccess = {
+                Toast.makeText(this, "Product has been in cart", Toast.LENGTH_SHORT).show()
+            }, doOnError = {
                     Toast.makeText(this, "Failed add to cart", Toast.LENGTH_SHORT).show()
                 })
         }

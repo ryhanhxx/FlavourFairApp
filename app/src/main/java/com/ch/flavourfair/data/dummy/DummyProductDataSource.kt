@@ -15,7 +15,7 @@ class DummyProductDataSourceImpl() : DummyProductDataSource {
                 name = "Sushi",
                 price = 180000.0,
                 address = "Lorem Ipsum",
-                desc = "A variant of traditional Chinese dumplings served steamed and fried.",
+                desc = "A variant of traditional Chinese dumplings served steamed and fried."
             ),
             Product(
                 id = 2,
@@ -23,16 +23,16 @@ class DummyProductDataSourceImpl() : DummyProductDataSource {
                 address = "Lorem Ipsum",
                 name = "Taichan",
                 price = 120000.0,
-                desc = "A variant of traditional Chinese dumplings served steamed and fried.",
+                desc = "A variant of traditional Chinese dumplings served steamed and fried."
 
-                ),
+            ),
             Product(
                 id = 3,
                 imgUrl = "https://raw.githubusercontent.com/ryhanhxx/Challenge-BinarAndroid/feature_navigation_component/app/src/main/res/drawable/img_spaghetti.webp",
                 address = "Lorem Ipsum",
                 name = "Spaghetti",
                 price = 130000.0,
-                desc = "A variant of traditional Chinese dumplings served steamed and fried.",
+                desc = "A variant of traditional Chinese dumplings served steamed and fried."
             ),
             Product(
                 id = 4,
@@ -40,7 +40,7 @@ class DummyProductDataSourceImpl() : DummyProductDataSource {
                 address = "Lorem Ipsum",
                 name = "Ayam Panggang",
                 price = 150000.0,
-                desc = "A variant of traditional Chinese dumplings served steamed and fried.",
+                desc = "A variant of traditional Chinese dumplings served steamed and fried."
             ),
             Product(
                 id = 5,
@@ -48,7 +48,7 @@ class DummyProductDataSourceImpl() : DummyProductDataSource {
                 address = "Lorem Ipsum",
                 name = "Kopi",
                 price = 50000.0,
-                desc = "A variant of traditional Chinese dumplings served steamed and fried.",
+                desc = "A variant of traditional Chinese dumplings served steamed and fried."
             ),
             Product(
                 id = 6,
@@ -56,7 +56,7 @@ class DummyProductDataSourceImpl() : DummyProductDataSource {
                 name = "Kentang Goreng",
                 address = "Lorem Ipsum",
                 price = 100000.0,
-                desc = "A variant of traditional Chinese dumplings served steamed and fried.",
+                desc = "A variant of traditional Chinese dumplings served steamed and fried."
             ),
             Product(
                 id = 7,
@@ -64,7 +64,7 @@ class DummyProductDataSourceImpl() : DummyProductDataSource {
                 address = "Lorem Ipsum",
                 name = "Burger",
                 price = 250000.0,
-                desc = "A variant of traditional Chinese dumplings served steamed and fried.",
+                desc = "A variant of traditional Chinese dumplings served steamed and fried."
             )
         )
     }

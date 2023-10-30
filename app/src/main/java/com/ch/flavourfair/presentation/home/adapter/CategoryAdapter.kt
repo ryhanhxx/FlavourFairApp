@@ -53,6 +53,3 @@ class CategoryAdapter(private val onItemClick: (Category) -> Unit) :
         }
     }
 }
-
-
-

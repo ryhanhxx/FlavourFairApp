@@ -5,6 +5,7 @@ import com.ch.flavourfair.data.network.api.model.category.CategoriesResponse
 import com.ch.flavourfair.data.network.api.model.order.OrderRequest
 import com.ch.flavourfair.data.network.api.model.order.OrderResponse
 import com.ch.flavourfair.data.network.api.model.product.ProductsResponse
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -26,8 +27,9 @@ interface FlavourfairApiService {
 
     companion object {
         @JvmStatic
-        operator fun invoke(): FlavourfairApiService {
+        operator fun invoke(chucker: ChuckerInterceptor): FlavourfairApiService {
             val okHttpClient = OkHttpClient.Builder()
+                .addInterceptor(chucker)
                 .connectTimeout(120, TimeUnit.SECONDS)
                 .readTimeout(120, TimeUnit.SECONDS)
                 .build()

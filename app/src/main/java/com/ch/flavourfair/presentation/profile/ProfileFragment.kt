@@ -1,15 +1,11 @@
 package com.ch.flavourfair.presentation.profile
 
-
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.PickVisualMediaRequest
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -29,22 +25,8 @@ class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-
     private val viewModel: ProfileViewModel by viewModels {
         GenericViewModelFactory.create(createViewModel())
-    }
-
-    private val pickMedia =
-        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-            if (uri != null) {
-                changePhotoProfile(uri)
-            }
-        }
-
-    private fun changePhotoProfile(uri: Uri) {
-        viewModel.updateProfilePicture(uri)
     }
 
     private fun createViewModel(): ProfileViewModel {
@@ -59,7 +41,6 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -90,33 +71,27 @@ class ProfileFragment : Fragment() {
     }
 
     private fun observeData() {
-        /*viewModel.changePhotoResult.observe(this) {
-            it.proceedWhen(doOnSuccess = {
-                Toast.makeText(this, "Change Photo Profile Success !", Toast.LENGTH_SHORT).show()
-                showUserData()
-            }, doOnError = {
-                Toast.makeText(this, "Change Photo Profile Failed !", Toast.LENGTH_SHORT).show()
-                showUserData()
-            })
-        }*/
         viewModel.changeProfileResult.observe(viewLifecycleOwner) {
-            it.proceedWhen(
-                doOnSuccess = {
+            it.proceedWhen(doOnSuccess = {
+                binding.pbLoading.isVisible = false
+                binding.btnChangeProfile.isVisible = true
+                Toast.makeText(
+                    requireContext(),
+                    "Change Profile data Success !",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }, doOnError = {
                     binding.pbLoading.isVisible = false
                     binding.btnChangeProfile.isVisible = true
-                    Toast.makeText(requireContext(), "Change Profile data Success !", Toast.LENGTH_SHORT).show()
-                },
-                doOnError = {
-                    binding.pbLoading.isVisible = false
-                    binding.btnChangeProfile.isVisible = true
-                    Toast.makeText(requireContext(), "Change Profile data Failed !", Toast.LENGTH_SHORT).show()
-
-                },
-                doOnLoading = {
+                    Toast.makeText(
+                        requireContext(),
+                        "Change Profile data Failed !",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }, doOnLoading = {
                     binding.pbLoading.isVisible = true
                     binding.btnChangeProfile.isVisible = false
-                }
-            )
+                })
         }
     }
 
@@ -132,38 +107,28 @@ class ProfileFragment : Fragment() {
                 changeProfileData()
             }
         }
-        /*binding.ivEditPhoto.setOnClickListener {
-            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-        }*/
     }
 
     private fun requestChangePassword() {
         viewModel.createChangePwdRequest()
-        val dialog = AlertDialog.Builder(requireContext())
-            .setMessage(
-                "Change password request sent to your email " +
-                        "${viewModel.getCurrentUser()?.email}"
-            )
-            .setPositiveButton("Okay") { _, _ ->
-                //do nothing
-            }.create().show()
+        val dialog = AlertDialog.Builder(requireContext()).setMessage(
+            "Change password request sent to your email " + "${viewModel.getCurrentUser()?.email}"
+        ).setPositiveButton("Okay") { _, _ ->
+            // do nothing
+        }.create().show()
     }
 
     private fun doLogout() {
         viewModel.createChangePwdRequest()
-        val dialog = AlertDialog.Builder(requireContext())
-            .setMessage(
-                "Do you wanna logout ?" +
-                        "${viewModel.getCurrentUser()?.email}"
-            )
-            .setPositiveButton("Okay") { _, _ ->
-                viewModel.doLogout()
-                navigateToLogin()
-                //do nothing
-            }
-            .setNegativeButton("No") { _, _ ->
-                viewModel.doLogout()
-            }.create().show()
+        val dialog = AlertDialog.Builder(requireContext()).setMessage(
+            "Do you wanna logout ?" + "${viewModel.getCurrentUser()?.email}"
+        ).setPositiveButton("Okay") { _, _ ->
+            viewModel.doLogout()
+            navigateToLogin()
+            // do nothing
+        }.setNegativeButton("No") { _, _ ->
+            viewModel.doLogout()
+        }.create().show()
     }
 
     private fun navigateToLogin() {
@@ -192,6 +157,4 @@ class ProfileFragment : Fragment() {
         binding.layoutForm.etEmail.isEnabled = false
         binding.layoutForm.clNotification.isVisible = true
     }
-
-
 }

@@ -1,11 +1,11 @@
 package com.ch.flavourfair.presentation.login
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.ch.flavourfair.R
 import com.ch.flavourfair.data.network.firebase.auth.FirebaseAuthDataSourceImpl
@@ -52,13 +52,11 @@ class LoginActivity : AppCompatActivity() {
 
     private fun observeResult() {
         viewModel.loginResult.observe(this) {
-            it.proceedWhen(
-                doOnSuccess = {
-                    binding.pbLoading.isVisible = false
-                    binding.btnLogin.isVisible = true
-                    navigateToMain()
-                },
-                doOnError = {
+            it.proceedWhen(doOnSuccess = {
+                binding.pbLoading.isVisible = false
+                binding.btnLogin.isVisible = true
+                navigateToMain()
+            }, doOnError = {
                     binding.pbLoading.isVisible = false
                     binding.btnLogin.isVisible = true
                     Toast.makeText(
@@ -66,29 +64,28 @@ class LoginActivity : AppCompatActivity() {
                         "Login Failed : ${it.exception?.message.orEmpty()}",
                         Toast.LENGTH_SHORT
                     ).show()
-                },
-                doOnLoading = {
+                }, doOnLoading = {
                     binding.pbLoading.isVisible = true
                     binding.btnLogin.isVisible = false
-                }
-            )
+                })
         }
     }
 
     private fun navigateToMain() {
-        startActivity(Intent(this, MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        })
+        startActivity(
+            Intent(this, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            }
+        )
     }
 
     private fun setClickListeners() {
-        binding.tvNavToRegister.highLightWord(getString(R.string.text_highlight_register)){
+        binding.tvNavToRegister.highLightWord(getString(R.string.text_highlight_register)) {
             navigateToRegister()
         }
         binding.btnLogin.setOnClickListener {
             doLogin()
         }
-
     }
 
     private fun navigateToRegister() {
@@ -110,8 +107,10 @@ class LoginActivity : AppCompatActivity() {
         val email = binding.layoutForm.etEmail.text.toString().trim()
         val password = binding.layoutForm.etPassword.text.toString().trim()
 
-        return checkEmailValidation(email) &&
-                checkPasswordValidation(password, binding.layoutForm.tilPassword)
+        return checkEmailValidation(email) && checkPasswordValidation(
+            password,
+            binding.layoutForm.tilPassword
+        )
     }
 
     private fun checkEmailValidation(email: String): Boolean {
@@ -135,13 +134,11 @@ class LoginActivity : AppCompatActivity() {
     ): Boolean {
         return if (confirmPassword.isEmpty()) {
             textInputLayout.isErrorEnabled = true
-            textInputLayout.error =
-                getString(R.string.text_error_password_empty)
+            textInputLayout.error = getString(R.string.text_error_password_empty)
             false
         } else if (confirmPassword.length < 8) {
             textInputLayout.isErrorEnabled = true
-            textInputLayout.error =
-                getString(R.string.text_error_password_less_than_8_char)
+            textInputLayout.error = getString(R.string.text_error_password_less_than_8_char)
             false
         } else {
             textInputLayout.isErrorEnabled = false

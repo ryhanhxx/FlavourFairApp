@@ -6,5 +6,4 @@ import com.ch.flavourfair.data.repository.UserRepository
 class SplashViewModel(private val repo: UserRepository) : ViewModel() {
 
     fun isUserLoggedIn() = repo.isLoggedIn()
-
 }

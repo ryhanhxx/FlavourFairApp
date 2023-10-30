@@ -22,5 +22,4 @@ class RegisterViewModel(private val repo: UserRepository) : ViewModel() {
             }
         }
     }
-
 }

@@ -17,29 +17,40 @@ class ProductAdapter(
     private val onItemClick: (Product) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val differ = AsyncListDiffer(this, object : DiffUtil.ItemCallback<Product>() {
-        override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
-            return oldItem.id == newItem.id
-        }
+    private val differ = AsyncListDiffer(
+        this,
+        object : DiffUtil.ItemCallback<Product>() {
+            override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
+                return oldItem.id == newItem.id
+            }
 
-        override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean {
-            return oldItem.hashCode() == newItem.hashCode()
+            override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean {
+                return oldItem.hashCode() == newItem.hashCode()
+            }
         }
-    })
+    )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            AdapterLayout.GRID.ordinal -> (ProductGridViewHolder(
-                binding = ItemProductGridBinding.inflate(
-                    LayoutInflater.from(parent.context), parent, false
-                ), onItemClick
-            ))
+            AdapterLayout.GRID.ordinal -> (
+                ProductGridViewHolder(
+                    binding = ItemProductGridBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    ),
+                    onItemClick
+                )
+                )
 
             else -> {
                 ProductLinearViewHolder(
                     binding = ItemProductListBinding.inflate(
-                        LayoutInflater.from(parent.context), parent, false
-                    ), onItemClick
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    ),
+                    onItemClick
                 )
             }
         }

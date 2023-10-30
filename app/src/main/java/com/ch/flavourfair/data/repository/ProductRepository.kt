@@ -1,6 +1,5 @@
 package com.ch.flavourfair.data.repository
 
-
 import com.ch.flavourfair.data.network.api.datasource.FlavourfairDataSource
 import com.ch.flavourfair.data.network.api.model.category.toCategoryList
 import com.ch.flavourfair.data.network.api.model.product.toProductList
@@ -16,7 +15,7 @@ interface ProductRepository {
 }
 
 class ProductRepositoryImpl(
-    private val apiDataSource: FlavourfairDataSource,
+    private val apiDataSource: FlavourfairDataSource
 ) : ProductRepository {
 
     override fun getCategories(): Flow<ResultWrapper<List<Category>>> {

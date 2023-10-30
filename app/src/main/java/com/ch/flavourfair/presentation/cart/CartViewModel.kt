@@ -1,6 +1,5 @@
 package com.ch.flavourfair.presentation.cart
 
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
@@ -15,20 +14,14 @@ class CartViewModel(private val repo: CartRepository) : ViewModel() {
     val cartList = repo.getUserCartData().asLiveData(Dispatchers.IO)
 
     fun decreaseCart(item: Cart) {
-        viewModelScope.launch {repo.decreaseCart(item).collect()}
+        viewModelScope.launch { repo.decreaseCart(item).collect() }
     }
 
     fun increaseCart(item: Cart) {
-        viewModelScope.launch {repo.increaseCart(item).collect()}
+        viewModelScope.launch { repo.increaseCart(item).collect() }
     }
 
     fun deleteCart(item: Cart) {
-        viewModelScope.launch {repo.deleteCart(item).collect()}
+        viewModelScope.launch { repo.deleteCart(item).collect() }
     }
-
-    /*fun updateNote(item: Cart) {
-        viewModelScope.launch {repo.updateNote(item).collect()}
-    }*/
-
-
 }

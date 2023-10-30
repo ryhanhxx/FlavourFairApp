@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 class MainViewModel(private val repo: UserPreferenceDataSource) : ViewModel() {
     val userGridModeLiveData = repo.getUserGridModePrefFlow().asLiveData(Dispatchers.IO)
 
-    fun setGridModePref(isUsingGridMode : Boolean){
+    fun setGridModePref(isUsingGridMode: Boolean) {
         viewModelScope.launch {
             repo.setUserGridModePref(isUsingGridMode)
         }

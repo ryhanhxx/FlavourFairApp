@@ -58,7 +58,7 @@ class CartViewHolder(
 }
 
 class CartCheckoutViewHolder(
-    private val binding: ItemCartProductCheckoutBinding,
+    private val binding: ItemCartProductCheckoutBinding
 ) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<Cart> {
     override fun bind(item: Cart) {
         setCartData(item)
@@ -84,7 +84,6 @@ class CartCheckoutViewHolder(
         binding.tvNotes.text = item.itemNotes
     }
 }
-
 
 interface CartListener {
     fun onPlusTotalItemCartClicked(cart: Cart)

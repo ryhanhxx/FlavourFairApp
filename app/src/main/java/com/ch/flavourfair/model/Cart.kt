@@ -1,8 +1,5 @@
 package com.ch.flavourfair.model
 
-import androidx.room.ColumnInfo
-import androidx.room.PrimaryKey
-
 data class Cart(
     var id: Int? = null,
     var productId: Int? = null,
@@ -10,5 +7,5 @@ data class Cart(
     var productPrice: Double,
     var productImgUrl: String,
     var itemQuantity: Int = 0,
-    var itemNotes: String? = null,
+    var itemNotes: String? = null
 )

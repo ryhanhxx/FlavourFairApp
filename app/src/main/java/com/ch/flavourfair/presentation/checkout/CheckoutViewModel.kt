@@ -10,7 +10,7 @@ import com.ch.flavourfair.utils.ResultWrapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CheckoutViewModel(private val repo: CartRepository): ViewModel() {
+class CheckoutViewModel(private val repo: CartRepository) : ViewModel() {
     val cartList = repo.getUserCartData().asLiveData(Dispatchers.IO)
 
     private val _checkoutResult = MutableLiveData<ResultWrapper<Boolean>>()
@@ -26,7 +26,7 @@ class CheckoutViewModel(private val repo: CartRepository): ViewModel() {
         }
     }
 
-    fun clearCart(){
+    fun clearCart() {
         viewModelScope.launch(Dispatchers.IO) {
             repo.deleteAll()
         }

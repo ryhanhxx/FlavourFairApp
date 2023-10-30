@@ -10,5 +10,5 @@ data class Product(
     val address: String,
     val name: String,
     val price: Double,
-    val desc: String,
-): Parcelable
+    val desc: String
+) : Parcelable

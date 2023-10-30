@@ -8,8 +8,7 @@ import com.ch.flavourfair.databinding.ItemProductListBinding
 import com.ch.flavourfair.model.Product
 import com.ch.flavourfair.utils.toCurrencyFormat
 
-class ProductItemViewHolder {
-}
+class ProductItemViewHolder
 
 class ProductLinearViewHolder(
     private val binding: ItemProductListBinding,

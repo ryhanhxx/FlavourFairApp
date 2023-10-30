@@ -1,11 +1,10 @@
 package com.ch.flavourfair.presentation.splash
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.ch.flavourfair.R
 import com.ch.flavourfair.data.network.firebase.auth.FirebaseAuthDataSource
 import com.ch.flavourfair.data.network.firebase.auth.FirebaseAuthDataSourceImpl
 import com.ch.flavourfair.data.repository.UserRepository
@@ -22,6 +21,8 @@ class SplashActivity : AppCompatActivity() {
     private val viewModel: SplashViewModel by viewModels {
         GenericViewModelFactory.create(createViewModel())
     }
+
+    /*private val viewModel: SplashViewModel by viewModel()*/
 
     private fun createViewModel(): SplashViewModel {
         val firebaseAuth = FirebaseAuth.getInstance()
@@ -43,9 +44,9 @@ class SplashActivity : AppCompatActivity() {
     private fun checkIfUserLogin() {
         lifecycleScope.launch {
             delay(2000)
-            if(viewModel.isUserLoggedIn()){
+            if (viewModel.isUserLoggedIn()) {
                 navigateToMain()
-            }else{
+            } else {
                 navigateToLogin()
             }
         }

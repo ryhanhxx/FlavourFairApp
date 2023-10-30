@@ -1,9 +1,8 @@
 package com.ch.flavourfair.data.network.api.model.category
 
-
-import com.google.gson.annotations.SerializedName
 import androidx.annotation.Keep
 import com.ch.flavourfair.model.Category
+import com.google.gson.annotations.SerializedName
 
 @Keep
 data class CategoryResponse(
