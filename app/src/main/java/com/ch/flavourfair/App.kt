@@ -1,7 +1,7 @@
 package com.ch.flavourfair
 
 import android.app.Application
-import com.ch.flavourfair.di.AppInjection
+import com.ch.flavourfair.di.AppModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -16,7 +16,7 @@ class App : Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(AppInjection.modules)
+            modules(AppModules.modules)
         }
     }
 }

@@ -9,23 +9,19 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.ch.flavourfair.R
-import com.ch.flavourfair.data.network.firebase.auth.FirebaseAuthDataSourceImpl
-import com.ch.flavourfair.data.repository.UserRepositoryImpl
 import com.ch.flavourfair.databinding.FragmentProfileBinding
 import com.ch.flavourfair.presentation.login.LoginActivity
-import com.ch.flavourfair.utils.GenericViewModelFactory
 import com.ch.flavourfair.utils.proceedWhen
-import com.google.firebase.auth.FirebaseAuth
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
 
-    private val viewModel: ProfileViewModel by viewModels {
+    /*private val viewModel: ProfileViewModel by viewModels {
         GenericViewModelFactory.create(createViewModel())
     }
 
@@ -34,7 +30,9 @@ class ProfileFragment : Fragment() {
         val dataSource = FirebaseAuthDataSourceImpl(firebaseAuth)
         val repo = UserRepositoryImpl(dataSource)
         return ProfileViewModel(repo)
-    }
+    }*/
+
+    private val viewModel: ProfileViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,

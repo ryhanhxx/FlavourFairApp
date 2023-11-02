@@ -18,6 +18,7 @@ class DetailProductViewModel(
     val priceLiveData = MutableLiveData<Double>().apply {
         postValue(0.0)
     }
+
     val productQuantityLiveData = MutableLiveData<Int>().apply {
         postValue(0)
     }

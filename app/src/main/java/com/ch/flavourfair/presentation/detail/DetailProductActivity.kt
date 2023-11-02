@@ -5,22 +5,14 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
-import com.ch.flavourfair.data.local.database.AppDatabase
-import com.ch.flavourfair.data.local.database.datasource.CartDataSource
-import com.ch.flavourfair.data.local.database.datasource.CartDatabaseDataSource
-import com.ch.flavourfair.data.network.api.datasource.FlavourfairApiDataSource
-import com.ch.flavourfair.data.network.api.service.FlavourfairApiService
-import com.ch.flavourfair.data.repository.CartRepository
-import com.ch.flavourfair.data.repository.CartRepositoryImpl
 import com.ch.flavourfair.databinding.ActivityDetailProductBinding
 import com.ch.flavourfair.model.Product
-import com.ch.flavourfair.utils.GenericViewModelFactory
 import com.ch.flavourfair.utils.proceedWhen
 import com.ch.flavourfair.utils.toCurrencyFormat
-import com.chuckerteam.chucker.api.ChuckerInterceptor
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class DetailProductActivity : AppCompatActivity() {
 
@@ -28,16 +20,7 @@ class DetailProductActivity : AppCompatActivity() {
         ActivityDetailProductBinding.inflate(layoutInflater)
     }
 
-    private val viewModel: DetailProductViewModel by viewModels {
-        val database = AppDatabase.getInstance(this)
-        val cartDao = database.cartDao()
-        val cartDataSource: CartDataSource = CartDatabaseDataSource(cartDao)
-        val chuckerInterceptor = ChuckerInterceptor(applicationContext)
-        val service = FlavourfairApiService.invoke(chuckerInterceptor)
-        val apiDataSource = FlavourfairApiDataSource(service)
-        val repo: CartRepository = CartRepositoryImpl(cartDataSource, apiDataSource)
-        GenericViewModelFactory.create(DetailProductViewModel(intent?.extras, repo))
-    }
+    private val viewModel: DetailProductViewModel by viewModel { parametersOf(intent?.extras) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,6 +78,7 @@ class DetailProductActivity : AppCompatActivity() {
         viewModel.addToCartLiveData.observe(this) {
             it.proceedWhen(doOnSuccess = {
                 Toast.makeText(this, "Product has been in cart", Toast.LENGTH_SHORT).show()
+                finish()
             }, doOnError = {
                     Toast.makeText(this, "Failed add to cart", Toast.LENGTH_SHORT).show()
                 })

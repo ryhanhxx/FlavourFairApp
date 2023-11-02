@@ -19,17 +19,23 @@ import com.ch.flavourfair.data.repository.UserRepository
 import com.ch.flavourfair.data.repository.UserRepositoryImpl
 import com.ch.flavourfair.presentation.cart.CartViewModel
 import com.ch.flavourfair.presentation.checkout.CheckoutViewModel
+import com.ch.flavourfair.presentation.detail.DetailProductViewModel
 import com.ch.flavourfair.presentation.home.HomeViewModel
+import com.ch.flavourfair.presentation.login.LoginViewModel
+import com.ch.flavourfair.presentation.profile.ProfileViewModel
+import com.ch.flavourfair.presentation.register.RegisterViewModel
 import com.ch.flavourfair.presentation.splash.SplashViewModel
 import com.ch.flavourfair.utils.PreferenceDataStoreHelper
 import com.ch.flavourfair.utils.PreferenceDataStoreHelperImpl
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.google.firebase.auth.FirebaseAuth
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
-object AppInjection {
+object AppModules {
     private val localModule = module {
         single { AppDatabase.getInstance(androidContext()) }
         single { get<AppDatabase>().cartDao() }
@@ -40,6 +46,7 @@ object AppInjection {
     private val networkModule = module {
         single { ChuckerInterceptor(androidContext()) }
         single { FlavourfairApiService.invoke(get()) }
+        single { FirebaseAuth.getInstance() }
     }
 
     private val dataSourceModule = module {
@@ -59,7 +66,11 @@ object AppInjection {
         viewModelOf(::HomeViewModel)
         viewModelOf(::CartViewModel)
         viewModelOf(::CheckoutViewModel)
+        viewModel { DetailProductViewModel(get(), get()) }
         viewModelOf(::SplashViewModel)
+        viewModelOf(::LoginViewModel)
+        viewModelOf(::RegisterViewModel)
+        viewModelOf(::ProfileViewModel)
     }
 
     val modules: List<Module> = listOf(

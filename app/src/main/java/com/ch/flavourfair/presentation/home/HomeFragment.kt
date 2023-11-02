@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.ch.flavourfair.R
 import com.ch.flavourfair.data.dummy.DummyCategoryDataSourceImpl
 import com.ch.flavourfair.data.local.datastore.UserPreferenceDataSourceImpl
 import com.ch.flavourfair.data.local.datastore.appDataStore
@@ -124,7 +125,7 @@ class HomeFragment : Fragment() {
                     binding.layoutStateProduct.root.isVisible = true
                     binding.layoutStateProduct.pbLoading.isVisible = false
                     binding.layoutStateProduct.tvError.isVisible = true
-                    binding.layoutStateProduct.tvError.text = "Product not found"
+                    binding.layoutStateProduct.tvError.setText(R.string.product_not_found)
                     binding.rvHome.isVisible = false
                 })
         }
@@ -140,8 +141,7 @@ class HomeFragment : Fragment() {
         binding.rvHome.apply {
             layoutManager = GridLayoutManager(requireContext(), span)
             adapter = this@HomeFragment.adapter
-        } /*
-        adapter.setData(datasourceProduct.getProductData())*/
+        }
     }
 
     private fun setupSwitch() {

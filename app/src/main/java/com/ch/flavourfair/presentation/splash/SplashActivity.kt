@@ -2,34 +2,28 @@ package com.ch.flavourfair.presentation.splash
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.ch.flavourfair.data.network.firebase.auth.FirebaseAuthDataSource
-import com.ch.flavourfair.data.network.firebase.auth.FirebaseAuthDataSourceImpl
-import com.ch.flavourfair.data.repository.UserRepository
-import com.ch.flavourfair.data.repository.UserRepositoryImpl
 import com.ch.flavourfair.databinding.ActivitySplashBinding
 import com.ch.flavourfair.presentation.login.LoginActivity
 import com.ch.flavourfair.presentation.main.MainActivity
-import com.ch.flavourfair.utils.GenericViewModelFactory
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashActivity : AppCompatActivity() {
-    private val viewModel: SplashViewModel by viewModels {
+    /*private val viewModel: SplashViewModel by viewModels {
         GenericViewModelFactory.create(createViewModel())
-    }
+    }*/
 
-    /*private val viewModel: SplashViewModel by viewModel()*/
+    private val viewModel: SplashViewModel by viewModel()
 
-    private fun createViewModel(): SplashViewModel {
+    /*private fun createViewModel(): SplashViewModel {
         val firebaseAuth = FirebaseAuth.getInstance()
         val dataSource: FirebaseAuthDataSource = FirebaseAuthDataSourceImpl(firebaseAuth)
-        val repository: UserRepository = UserRepositoryImpl(dataSource)
-        return SplashViewModel(repository)
-    }
+        val repo: UserRepository = UserRepositoryImpl(dataSource)
+        return SplashViewModel(repo)
+    }*/
 
     private val binding: ActivitySplashBinding by lazy {
         ActivitySplashBinding.inflate(layoutInflater)

@@ -2,12 +2,12 @@ package com.ch.flavourfair.presentation.cart
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import com.ch.flavourfair.R
 import com.ch.flavourfair.databinding.FragmentCartBinding
 import com.ch.flavourfair.model.Cart
 import com.ch.flavourfair.presentation.cart.adapter.CartListAdapter
@@ -92,8 +92,15 @@ class CartFragment : Fragment() {
                     binding.layoutState.tvError.isVisible = false
                     binding.layoutState.pbLoading.isVisible = true
                     binding.rvCart.isVisible = false
-                }, doOnEmpty = {
-                    Log.d("Cart Fragment", "Cart is empty")
+                }, doOnEmpty = { data ->
+                    binding.layoutState.root.isVisible = true
+                    binding.layoutState.pbLoading.isVisible = false
+                    binding.layoutState.tvError.isVisible = true
+                    binding.layoutState.tvError.text = getString(R.string.text_cart_is_empty)
+                    data.payload?.let { (_, totalPrice) ->
+                        binding.tvTotalprice.text = totalPrice.toCurrencyFormat()
+                    }
+                    binding.rvCart.isVisible = false
                 })
         }
     }
