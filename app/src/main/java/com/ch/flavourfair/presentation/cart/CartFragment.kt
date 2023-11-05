@@ -13,6 +13,7 @@ import com.ch.flavourfair.model.Cart
 import com.ch.flavourfair.presentation.cart.adapter.CartListAdapter
 import com.ch.flavourfair.presentation.cart.viewholder.CartListener
 import com.ch.flavourfair.presentation.checkout.CheckoutProductActivity
+import com.ch.flavourfair.utils.hideKeyboard
 import com.ch.flavourfair.utils.proceedWhen
 import com.ch.flavourfair.utils.toCurrencyFormat
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -39,7 +40,8 @@ class CartFragment : Fragment() {
             }
 
             override fun onUserDoneEditingNotes(cart: Cart) {
-                TODO("Not yet implemented")
+                viewModel.setCartNotes(cart)
+                hideKeyboard()
             }
         })
     }
