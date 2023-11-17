@@ -63,5 +63,6 @@
     <string name="text_payment_summary">Payment Summary</string>
     <string name="push_notification">Push Notification</string>
     <string name="product_not_found">Product not found</string>
+    <string name="all">all</string>
 
 </resources>
