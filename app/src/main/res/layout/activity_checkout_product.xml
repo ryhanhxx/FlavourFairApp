@@ -99,6 +99,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/primaryColor"
             android:text="@string/text_btn_order"
+            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/cl_totalprice" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

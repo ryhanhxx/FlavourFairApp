@@ -37,11 +37,11 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginBottom="1dp"
                 android:layout_weight="1"
-                android:background="@drawable/toggle_widget_background"
+                android:background="@color/toggle_widget_background"
                 android:button="@null"
                 android:gravity="center"
                 android:text="@string/text_takeaway"
-                android:textColor="@drawable/text_toggle" />
+                android:textColor="@color/text_toggle" />
 
             <RadioButton
                 android:id="@+id/rb_delivery"
@@ -51,11 +51,11 @@
                 android:layout_marginEnd="1dp"
                 android:layout_marginBottom="1dp"
                 android:layout_weight="1"
-                android:background="@drawable/toggle_widget_background"
+                android:background="@color/toggle_widget_background"
                 android:button="@null"
                 android:gravity="center"
                 android:text="@string/text_delivery"
-                android:textColor="@drawable/text_toggle" />
+                android:textColor="@color/text_toggle" />
         </RadioGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

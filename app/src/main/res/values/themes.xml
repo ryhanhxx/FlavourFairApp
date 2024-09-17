@@ -1,10 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Flavourfair" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <!-- Secondary brand color. -->
-        <!-- Status bar color. -->
-        <!-- Customize your theme here. -->
+        <item name="fontFamily">@font/jakarta_font</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryColorLight</item>
+
+        <item name="android:statusBarColor">@color/primaryColor</item>
     </style>
 
     <style name="Theme.Flavourfair" parent="Base.Theme.Flavourfair" />
