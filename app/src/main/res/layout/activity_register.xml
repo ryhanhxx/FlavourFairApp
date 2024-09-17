@@ -56,7 +56,6 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="4dp"
             android:backgroundTint="@color/primaryColor"
-            android:fontFamily="@font/poppins_semibold"
             android:padding="10dp"
             android:text="@string/btn_signup"
             android:textColor="@color/white"

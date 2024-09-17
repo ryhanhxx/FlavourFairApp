@@ -1,11 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Flavourfair" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Base.Theme.Flavourfair" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <!-- Secondary brand color. -->
         <!-- Status bar color. -->
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="Theme.Flavourfair" parent="Base.Theme.Flavourfair" />
+
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/primaryColorLight</item>
+    </style>
 
 </resources>

@@ -12,7 +12,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:fontFamily="@font/poppins"
         tools:text="Total Item Price" />
 
     <TextView
@@ -22,6 +21,5 @@
         android:layout_weight="1"
         android:textAlignment="textEnd"
         android:textStyle="bold"
-        android:fontFamily="@font/poppins_medium"
         tools:text="IDR 20.000.000" />
 </LinearLayout>
