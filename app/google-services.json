@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "495453365659",
+    "project_id": "flavourfair-2a07d",
+    "storage_bucket": "flavourfair-2a07d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495453365659:android:1de879b4960bdf92502d3e",
+        "android_client_info": {
+          "package_name": "com.ch.flavourfair"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxL6ul3fsotZ0PpSPSs_WToeViCsgzhGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
