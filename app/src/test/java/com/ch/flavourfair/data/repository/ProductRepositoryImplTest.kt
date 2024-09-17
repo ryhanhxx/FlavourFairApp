@@ -53,7 +53,6 @@ class ProductRepositoryImplTest {
     fun `get categories, with result success`() {
         val fakeCategoryResponse = CategoryResponse(
             id = "124",
-            imageUrl = "url",
             nama = "name",
             slug = "slug"
         )
