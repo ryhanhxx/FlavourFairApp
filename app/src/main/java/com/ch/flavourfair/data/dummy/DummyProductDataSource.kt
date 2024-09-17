@@ -24,7 +24,6 @@ class DummyProductDataSourceImpl() : DummyProductDataSource {
                 name = "Taichan",
                 price = 120000.0,
                 desc = "A variant of traditional Chinese dumplings served steamed and fried."
-
             ),
             Product(
                 id = 3,

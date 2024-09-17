@@ -8,8 +8,6 @@ import com.google.gson.annotations.SerializedName
 data class CategoryResponse(
     @SerializedName("id")
     val id: String?,
-    @SerializedName("image_url")
-    val imageUrl: String?,
     @SerializedName("nama")
     val nama: String?,
     @SerializedName("slug")
@@ -18,7 +16,6 @@ data class CategoryResponse(
 
 fun CategoryResponse.toCategory() = Category(
     id = this.id.orEmpty(),
-    imgUrl = this.imageUrl.orEmpty(),
     name = this.nama.orEmpty(),
     slug = this.slug.orEmpty()
 )

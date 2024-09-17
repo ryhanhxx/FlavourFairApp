@@ -153,6 +153,5 @@ class ProfileFragment : Fragment() {
         binding.layoutForm.tilName.isVisible = true
         binding.layoutForm.tilEmail.isVisible = true
         binding.layoutForm.etEmail.isEnabled = false
-        binding.layoutForm.clNotification.isVisible = true
     }
 }

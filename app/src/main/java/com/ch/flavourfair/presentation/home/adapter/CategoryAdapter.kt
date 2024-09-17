@@ -3,7 +3,6 @@ package com.ch.flavourfair.presentation.home.adapter.subadapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.ch.flavourfair.databinding.ItemCategoryProductBinding
 import com.ch.flavourfair.model.Category
 
@@ -45,7 +44,6 @@ class CategoryAdapter(private val onItemClick: (Category) -> Unit) :
         private val onItemClick: (Category) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Category) {
-            binding.ivImage.load(item.imgUrl)
             binding.tvName.text = item.name
             binding.root.setOnClickListener {
                 onItemClick.invoke(item)

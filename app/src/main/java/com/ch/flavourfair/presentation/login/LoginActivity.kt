@@ -4,15 +4,20 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.ch.flavourfair.R
+import com.ch.flavourfair.data.network.firebase.auth.FirebaseAuthDataSourceImpl
+import com.ch.flavourfair.data.repository.UserRepositoryImpl
 import com.ch.flavourfair.databinding.ActivityLoginBinding
 import com.ch.flavourfair.presentation.main.MainActivity
 import com.ch.flavourfair.presentation.register.RegisterActivity
+import com.ch.flavourfair.utils.GenericViewModelFactory
 import com.ch.flavourfair.utils.highLightWord
 import com.ch.flavourfair.utils.proceedWhen
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
@@ -20,17 +25,17 @@ class LoginActivity : AppCompatActivity() {
         ActivityLoginBinding.inflate(layoutInflater)
     }
 
-    /*private val viewModel: LoginViewModel by viewModels {
+    private val viewModel: LoginViewModel by viewModels {
         GenericViewModelFactory.create(createViewModel())
-    }*/
+    }
 
-    private val viewModel: LoginViewModel by viewModel()
-    /*private fun createViewModel(): LoginViewModel {
+//    private val viewModel: LoginViewModel by viewModel()
+    private fun createViewModel(): LoginViewModel {
         val firebaseAuth = FirebaseAuth.getInstance()
         val dataSource = FirebaseAuthDataSourceImpl(firebaseAuth)
         val repo = UserRepositoryImpl(dataSource)
         return LoginViewModel(repo)
-    }*/
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -25,12 +25,11 @@
         android:layout_marginHorizontal="16dp"
         android:textAlignment="center"
         android:visibility="gone"
-        android:fontFamily="@font/poppins_semibold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Cart is Empty"
+        tools:text="Tidak ada produk."
         tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

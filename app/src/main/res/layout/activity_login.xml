@@ -2,64 +2,61 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp"
     tools:context=".presentation.login.LoginActivity">
 
-    <ImageView
-        android:id="@+id/iv_logo"
-        android:layout_width="144dp"
-        android:layout_height="144dp"
-        android:layout_marginVertical="30dp"
-        android:src="@drawable/img_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Selamat Datang warkops!"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textColor="@color/primaryColor"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:text="Dapatkan kesenangan membaca di mana saja dan kapan saja."
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
     <include
         android:id="@+id/layout_form"
         layout="@layout/layout_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_logo"
-        app:layout_constraintVertical_bias="0.0"
+        android:layout_margin="2dp"
+        app:layout_constraintBottom_toTopOf="@id/fl_btn_loading_state"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc"
         tools:layout_editor_absoluteX="16dp" />
-
-    <ImageView
-        android:id="@+id/btn_google"
-        android:layout_margin="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img_btn_google"
-        app:layout_constraintTop_toBottomOf="@id/layout_form" />
-
-    <ImageView
-        android:id="@+id/btn_apple"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:src="@drawable/img_btn_apple"
-        app:layout_constraintTop_toBottomOf="@id/btn_google" />
 
     <FrameLayout
         android:id="@+id/fl_btn_loading_state"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@id/btn_apple">
+        app:layout_constraintBottom_toTopOf="@id/tv_nav_to_register">
 
         <Button
             android:id="@+id/btn_login"
+            style="@style/Widget.Material3.Button.ElevatedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="4dp"
             android:backgroundTint="@color/primaryColor"
             android:fontFamily="@font/poppins_semibold"
-            android:padding="10dp"
+            android:paddingVertical="12dp"
             android:text="@string/btn_login"
             android:textColor="@color/white"
+            android:textSize="14sp"
+            app:cornerRadius="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,5 +77,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/text_register"
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@id/fl_btn_loading_state" />
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

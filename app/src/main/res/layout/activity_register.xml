@@ -2,59 +2,53 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="12dp"
     tools:context=".presentation.register.RegisterActivity">
 
-    <View
-        android:id="@+id/v_background"
+    <TextView
+        android:id="@+id/tv_title"
         android:layout_width="match_parent"
-        android:layout_height="158dp"
-        android:background="@drawable/view_background_flat"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Selamat Datang SobatNgopi!"
+        android:textSize="24sp"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
+    <TextView
+        android:id="@+id/tv_desc"
         android:layout_width="match_parent"
-        android:layout_height="84dp"
-        android:background="@drawable/wave"
-        app:layout_constraintTop_toBottomOf="@id/v_background" />
-
-    <ImageView
-        android:id="@+id/iv_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="134dp"
-        android:layout_marginVertical="30dp"
-        android:src="@drawable/img_register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:text="Hidangan Favorit, Sekali Pesan!"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
     <include
         android:id="@+id/layout_form"
         layout="@layout/layout_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_logo"
-        app:layout_constraintVertical_bias="0.3"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintBottom_toTopOf="@id/fl_btn_loading_state"
+        app:layout_constraintTop_toBottomOf="@id/tv_desc" />
 
     <TextView
         android:id="@+id/tv_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         android:alpha="0.8"
+        android:layout_marginVertical="8dp"
         android:text="@string/text_privacypolicy"
         app:layout_constraintTop_toBottomOf="@id/layout_form" />
 
     <FrameLayout
         android:id="@+id/fl_btn_loading_state"
+        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_confirm">
+        app:layout_constraintBottom_toTopOf="@id/tv_nav_to_login">
 
         <Button
             android:id="@+id/btn_register"
@@ -86,7 +80,7 @@
         android:layout_marginTop="12dp"
         android:text="@string/text_login_here"
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@id/fl_btn_loading_state"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

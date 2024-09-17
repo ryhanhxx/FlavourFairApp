@@ -66,7 +66,6 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupCategoryRecyclerView()
         setupRecyclerview()
-        setupSwitch()
         observeData()
         getData()
     }
@@ -141,24 +140,6 @@ class HomeFragment : Fragment() {
         binding.rvHome.apply {
             layoutManager = GridLayoutManager(requireContext(), span)
             adapter = this@HomeFragment.adapter
-        }
-    }
-
-    private fun setupSwitch() {
-        mainViewModel.userGridModeLiveData.observe(viewLifecycleOwner) { isUsingGridMode ->
-            val layoutManager = binding.rvHome.layoutManager as GridLayoutManager
-            binding.ivBtnchangeview.setOnClickListener {
-                val newSpanCount = if (layoutManager.spanCount == 1) 2 else 1
-                layoutManager.spanCount = newSpanCount
-
-                val adapterLayout =
-                    if (newSpanCount == 2) AdapterLayout.GRID else AdapterLayout.LINEAR
-
-                mainViewModel.setGridModePref(isUsingGridMode)
-
-                adapter.adapterLayout = adapterLayout
-                adapter.refreshList()
-            }
         }
     }
 }
