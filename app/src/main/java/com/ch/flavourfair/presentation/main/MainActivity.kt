@@ -3,6 +3,7 @@ package com.ch.flavourfair.presentation.main
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.ch.flavourfair.R
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         val json = Gson().toJson(DummyProductDataSourceImpl().getProductData())
         val jsonca = Gson().toJson(DummyCategoryDataSourceImpl().getCategoryData())
         Log.d("Main", json)
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 
     private fun setupBottomNav() {
