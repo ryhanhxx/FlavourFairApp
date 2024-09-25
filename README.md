@@ -3,13 +3,15 @@
 ![alt text](https://github.com/ryhanhxx/Warkops/blob/master/screenshot/Thumbnail.png)
 
 <h2>Description</h2>
-<p>Warkops is a food delivery app that connects you to your favorite local coffee shops. Order fast, pay easily, and enjoy delicious meals hassle-free, anytime you want!</p>
+<p>Warkops is a food delivery app that connects you to your favorite local coffee shops. Order fast, pay easily, and enjoy delicious meals hassle-free, anytime you want! <a href="https://drive.google.com/file/d/11L_LpxD03oLedohesHApRi8AN5Xqtfo1/view?usp=sharing">Download Here.</a></p>
 
 
 <h2>Feature</h2>
 <ul>
     <li>Order Food</li>
     <li>Login & Register Authentication</li>
+    <li>API</li>
+    <li>State</li>
 </ul>
 
 <h2>Libraries</h3>
