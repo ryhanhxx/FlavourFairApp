@@ -136,7 +136,7 @@
             android:id="@+id/iv_location"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/img_shop"
+            android:src="@drawable/ic_shop"
             app:layout_constraintEnd_toStartOf="@id/ll_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
